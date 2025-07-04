@@ -1,6 +1,7 @@
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { UserProfile } from "@/components/ui/UserProfile";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -40,6 +41,9 @@ export default async function DashboardPage() {
       </header>
 
       <main className="max-w-7xl mx-auto p-6">
+        {/* User Profile Section with tRPC Demo */}
+        <UserProfile />
+
         {/* Welcome Section */}
         <div className="glass-section mb-8">
           <div className="flex items-center gap-4 mb-6">
