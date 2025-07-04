@@ -38,9 +38,10 @@ export function TRPCProvider({ children }: TRPCProviderProps) {
             // With SSR, we usually want to set some default staleTime
             // above 0 to avoid refetching immediately on the client
             staleTime: 60 * 1000, // 1 minute
-            retry: (failureCount, error: any) => {
+            retry: (failureCount, error: unknown) => {
               // Don't retry on 4xx errors
-              if (error?.data?.httpStatus >= 400 && error?.data?.httpStatus < 500) {
+              const errorData = error as { data?: { httpStatus?: number } };
+              if (errorData?.data?.httpStatus && errorData.data.httpStatus >= 400 && errorData.data.httpStatus < 500) {
                 return false;
               }
               // Retry up to 3 times for other errors

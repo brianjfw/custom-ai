@@ -3,11 +3,13 @@ import { auth } from '@clerk/nextjs/server';
 import type { NextRequest } from 'next/server';
 import superjson from 'superjson';
 
+import type { NeonHttpDatabase } from 'drizzle-orm/neon-http';
+
 // Lazy load the database connection to avoid build-time errors
-let dbInstance: any = null;
-const getDb = () => {
+let dbInstance: NeonHttpDatabase<Record<string, never>> | null = null;
+const getDb = async (): Promise<NeonHttpDatabase<Record<string, never>>> => {
   if (!dbInstance) {
-    const { db } = require('@/db');
+    const { db } = await import('@/db');
     dbInstance = db;
   }
   return dbInstance;
@@ -21,7 +23,7 @@ export const createTRPCContext = async (opts: { req: NextRequest }) => {
   const { userId } = await auth();
 
   return {
-    db: getDb(),
+    db: await getDb(),
     userId,
     req: opts.req,
   };
