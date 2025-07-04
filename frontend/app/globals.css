@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@import "../src/styles/glassmorphism.css";
+
+:root {
+  /* Base Colors */
+  --background: #faf9f7;
+  --foreground: #2d3748;
+  
+  /* Glass Theme Integration */
+  --glass-primary: #f4f3ff;
+  --glass-secondary: #ffffff;
+  --glass-background: #faf9f7;
+  --glass-surface: #f8f9fa;
+  --glass-coral: #ff6b6b;
+  --glass-blue: #4ecdc4;
+  --glass-amber: #ffd93d;
+  --glass-sage: #a8e6cf;
+}
+
+@theme inline {
+  /* Integrate glassmorphism colors into Tailwind's color system */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* Glass Colors */
+  --color-glass-primary: var(--glass-primary);
+  --color-glass-secondary: var(--glass-secondary);
+  --color-glass-background: var(--glass-background);
+  --color-glass-surface: var(--glass-surface);
+  --color-glass-coral: var(--glass-coral);
+  --color-glass-blue: var(--glass-blue);
+  --color-glass-amber: var(--glass-amber);
+  --color-glass-sage: var(--glass-sage);
+  
+  /* Typography */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Backdrop Blur Utilities */
+  --backdrop-blur-sm: 4px;
+  --backdrop-blur: 8px;
+  --backdrop-blur-md: 12px;
+  --backdrop-blur-lg: 16px;
+  --backdrop-blur-xl: 20px;
+  
+  /* Border Radius for rounded corners */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  
+  /* Shadows for glass effects */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-glass-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a1a1a;
+    --foreground: #ededed;
+    
+    /* Dark mode glass adjustments */
+    --glass-primary: #2d2d3a;
+    --glass-secondary: #1f1f1f;
+    --glass-background: #0f0f0f;
+    --glass-surface: #1a1a1a;
+  }
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Professional Warmth Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+p {
+  line-height: 1.6;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+/* Focus States */
+*:focus {
+  outline: 2px solid var(--glass-blue);
+  outline-offset: 2px;
+}
+
+/* Selection Colors */
+::selection {
+  background: var(--glass-blue);
+  color: var(--glass-secondary);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-coral);
+}
+
+/* Backdrop Filter Support */
+@supports (backdrop-filter: blur(10px)) {
+  .glass-card,
+  .glass-panel,
+  .glass-button,
+  .glass-input {
+    backdrop-filter: blur(var(--backdrop-blur));
+  }
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-card,
+  .glass-panel {
+    background: var(--glass-surface);
+    border: 1px solid #e2e8f0;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .glass-card,
+  .glass-panel,
+  .glass-button,
+  .glass-input {
+    border: 2px solid var(--foreground);
+    backdrop-filter: none;
+    background: var(--background);
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .glass-card,
+  .glass-panel {
+    background: white;
+    border: 1px solid #ccc;
+    backdrop-filter: none;
+  }
+}

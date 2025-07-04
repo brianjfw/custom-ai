@@ -1,0 +1,237 @@
+/* Glassmorphism Design System for SMB Platform */
+/* Colors: Soft lavender (#f4f3ff), warm cream (#faf9f7), translucent glass surfaces */
+/* Typography: Clean sans-serif with 1.4-1.6 line heights */
+/* Effects: Backdrop blur, subtle shadows, professional warmth */
+
+@theme {
+  /* Primary Colors - Glassmorphism Palette */
+  --color-glass-primary: #f4f3ff;
+  --color-glass-secondary: #ffffff;
+  --color-glass-background: #faf9f7;
+  --color-glass-surface: #f8f9fa;
+  
+  /* Accent Colors */
+  --color-glass-coral: #ff6b6b;
+  --color-glass-blue: #4ecdc4;
+  --color-glass-amber: #ffd93d;
+  --color-glass-sage: #a8e6cf;
+  
+  /* Glass Effects - Transparency Levels */
+  --color-glass-10: rgba(255, 255, 255, 0.1);
+  --color-glass-20: rgba(255, 255, 255, 0.2);
+  --color-glass-30: rgba(255, 255, 255, 0.3);
+  --color-glass-40: rgba(255, 255, 255, 0.4);
+  --color-glass-50: rgba(255, 255, 255, 0.5);
+  
+  /* Glass Borders */
+  --color-glass-border: rgba(255, 255, 255, 0.2);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.3);
+  
+  /* Text Colors */
+  --color-glass-text-primary: #2d3748;
+  --color-glass-text-secondary: #4a5568;
+  --color-glass-text-muted: #718096;
+  --color-glass-text-light: #a0aec0;
+  
+  /* Shadow Colors */
+  --color-glass-shadow: rgba(0, 0, 0, 0.1);
+  --color-glass-shadow-lg: rgba(0, 0, 0, 0.15);
+  
+  /* Gradient Stops */
+  --gradient-glass-primary: linear-gradient(135deg, var(--color-glass-primary) 0%, var(--color-glass-secondary) 100%);
+  --gradient-glass-surface: linear-gradient(135deg, var(--color-glass-surface) 0%, var(--color-glass-background) 100%);
+  --gradient-glass-accent: linear-gradient(135deg, var(--color-glass-coral) 0%, var(--color-glass-blue) 100%);
+  
+  /* Backdrop Blur Values */
+  --blur-glass-sm: 4px;
+  --blur-glass-md: 8px;
+  --blur-glass-lg: 12px;
+  --blur-glass-xl: 16px;
+  
+  /* Border Radius Values */
+  --radius-glass-sm: 8px;
+  --radius-glass-md: 12px;
+  --radius-glass-lg: 16px;
+  --radius-glass-xl: 20px;
+  
+  /* Spacing for generous layouts */
+  --spacing-glass-xs: 4px;
+  --spacing-glass-sm: 8px;
+  --spacing-glass-md: 16px;
+  --spacing-glass-lg: 24px;
+  --spacing-glass-xl: 32px;
+  --spacing-glass-2xl: 48px;
+  --spacing-glass-3xl: 64px;
+  
+  /* Typography Scale */
+  --font-size-glass-xs: 0.75rem;
+  --font-size-glass-sm: 0.875rem;
+  --font-size-glass-base: 1rem;
+  --font-size-glass-lg: 1.125rem;
+  --font-size-glass-xl: 1.25rem;
+  --font-size-glass-2xl: 1.5rem;
+  --font-size-glass-3xl: 1.875rem;
+  --font-size-glass-4xl: 2.25rem;
+  
+  /* Line Heights */
+  --line-height-glass-tight: 1.25;
+  --line-height-glass-normal: 1.5;
+  --line-height-glass-relaxed: 1.6;
+  --line-height-glass-loose: 1.8;
+  
+  /* Letter Spacing */
+  --letter-spacing-glass-tight: -0.025em;
+  --letter-spacing-glass-normal: 0em;
+  --letter-spacing-glass-wide: 0.025em;
+  --letter-spacing-glass-wider: 0.05em;
+}
+
+/* Glassmorphism Utility Classes */
+.glass-card {
+  background: var(--color-glass-20);
+  backdrop-filter: blur(var(--blur-glass-md));
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-glass-lg);
+  box-shadow: 0 8px 32px var(--color-glass-shadow);
+}
+
+.glass-card-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-card-hover:hover {
+  background: var(--color-glass-30);
+  border-color: var(--color-glass-border-hover);
+  box-shadow: 0 12px 40px var(--color-glass-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.glass-panel {
+  background: var(--color-glass-10);
+  backdrop-filter: blur(var(--blur-glass-lg));
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-glass-xl);
+}
+
+.glass-button {
+  background: var(--color-glass-30);
+  backdrop-filter: blur(var(--blur-glass-sm));
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-glass-md);
+  transition: all 0.2s ease;
+}
+
+.glass-button:hover {
+  background: var(--color-glass-40);
+  border-color: var(--color-glass-border-hover);
+  transform: translateY(-1px);
+}
+
+.glass-input {
+  background: var(--color-glass-20);
+  backdrop-filter: blur(var(--blur-glass-sm));
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-glass-md);
+}
+
+.glass-input:focus {
+  background: var(--color-glass-30);
+  border-color: var(--color-glass-blue);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+}
+
+/* Gradient Backgrounds */
+.glass-gradient-primary {
+  background: var(--gradient-glass-primary);
+}
+
+.glass-gradient-surface {
+  background: var(--gradient-glass-surface);
+}
+
+.glass-gradient-accent {
+  background: var(--gradient-glass-accent);
+}
+
+/* Professional Warmth Typography */
+.glass-text-primary {
+  color: var(--color-glass-text-primary);
+  line-height: var(--line-height-glass-normal);
+  letter-spacing: var(--letter-spacing-glass-normal);
+}
+
+.glass-text-secondary {
+  color: var(--color-glass-text-secondary);
+  line-height: var(--line-height-glass-relaxed);
+  letter-spacing: var(--letter-spacing-glass-wide);
+}
+
+.glass-text-muted {
+  color: var(--color-glass-text-muted);
+  line-height: var(--line-height-glass-relaxed);
+}
+
+/* Dual-Pane Layout Helpers */
+.glass-pane-left {
+  background: var(--color-glass-10);
+  backdrop-filter: blur(var(--blur-glass-md));
+  border-right: 1px solid var(--color-glass-border);
+}
+
+.glass-pane-right {
+  background: var(--color-glass-primary);
+  backdrop-filter: blur(var(--blur-glass-sm));
+}
+
+/* Generous Spacing Utilities */
+.glass-spacing-xs { padding: var(--spacing-glass-xs); }
+.glass-spacing-sm { padding: var(--spacing-glass-sm); }
+.glass-spacing-md { padding: var(--spacing-glass-md); }
+.glass-spacing-lg { padding: var(--spacing-glass-lg); }
+.glass-spacing-xl { padding: var(--spacing-glass-xl); }
+.glass-spacing-2xl { padding: var(--spacing-glass-2xl); }
+.glass-spacing-3xl { padding: var(--spacing-glass-3xl); }
+
+/* Responsive Design Helpers */
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: var(--radius-glass-md);
+    padding: var(--spacing-glass-md);
+  }
+  
+  .glass-panel {
+    border-radius: var(--radius-glass-lg);
+  }
+}
+
+/* Animation Helpers */
+@keyframes glass-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glass-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.glass-animate-fade-in {
+  animation: glass-fade-in 0.6s ease-out;
+}
+
+.glass-animate-slide-in {
+  animation: glass-slide-in 0.5s ease-out;
+}
