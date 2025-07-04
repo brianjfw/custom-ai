@@ -175,7 +175,7 @@ export const userRouter = createTRPCRouter({
   /**
    * Get user stats (for dashboard)
    */
-  getStats: protectedProcedure.query(async ({ ctx }) => {
+  getStats: protectedProcedure.query(async () => {
     // This is a placeholder - in a real app, you'd aggregate from various tables
     return {
       totalCustomers: 0,
