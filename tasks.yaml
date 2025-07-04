@@ -580,6 +580,2205 @@ tasks:
     dependencies: ["CORE-001", "CORE-002"]
     blocks: []
 
+  - id: "CORE-004"
+    name: "Complete Database Schema Implementation"
+    description: |
+      Implement comprehensive database schema covering all business entities:
+      customers, communications, calendar events, financial transactions, 
+      invoices, business settings, and AI conversation history.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-29"
+    due_date: "2024-02-01"
+    
+    cursor_hints:
+      - "Extend existing schema with all business entities"
+      - "Add proper foreign key relationships and constraints"
+      - "Implement multi-tenant row-level security"
+    
+    files_to_create:
+      - "src/db/schema/customers.ts"
+      - "src/db/schema/communications.ts"
+      - "src/db/schema/calendar.ts"
+      - "src/db/schema/financial.ts"
+      - "src/db/schema/ai-conversations.ts"
+    
+    files_to_modify:
+      - "src/db/schema.ts"
+      - "src/db/index.ts"
+    
+    terminal_commands:
+      - "npx drizzle-kit generate"
+      - "npx drizzle-kit migrate"
+    
+    dependencies: ["FOUND-004"]
+    blocks: ["CRM-001", "COMM-001", "FIN-001", "CAL-001"]
+    
+    acceptance_criteria:
+      - "Complete multi-tenant database schema implemented"
+      - "All business entities properly modeled"
+      - "Foreign key relationships established"
+      - "Row-level security policies active"
+      - "Database migrations generated and tested"
+
+  - id: "CORE-005"
+    name: "Complete tRPC API Router System"
+    description: |
+      Build comprehensive tRPC routers for all business domains:
+      customers, jobs, communications, calendar, finances, AI, and analytics.
+      Implement proper validation, error handling, and security.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-29"
+    due_date: "2024-02-03"
+    
+    cursor_hints:
+      - "Create domain-specific tRPC routers"
+      - "Implement Zod validation schemas"
+      - "Add middleware for authentication and tenant isolation"
+    
+    files_to_create:
+      - "src/server/routers/customers.ts"
+      - "src/server/routers/jobs.ts"
+      - "src/server/routers/communications.ts"
+      - "src/server/routers/calendar.ts"
+      - "src/server/routers/financial.ts"
+      - "src/server/routers/analytics.ts"
+      - "src/server/middleware/auth.ts"
+      - "src/server/middleware/tenant.ts"
+    
+    files_to_modify:
+      - "src/server/routers/_app.ts"
+      - "src/server/trpc.ts"
+    
+    terminal_commands:
+      - "npm install zod"
+      - "npm run build"
+    
+    dependencies: ["CORE-001", "CORE-004"]
+    blocks: ["CRM-002", "JOB-001", "COMM-002", "FIN-002"]
+    
+    acceptance_criteria:
+      - "Complete tRPC router system implemented"
+      - "All CRUD operations for business entities"
+      - "Proper validation and error handling"
+      - "Authentication and tenant isolation"
+      - "Type-safe API endpoints functional"
+
+  - id: "CORE-006"
+    name: "Advanced Context Engine Foundation"
+    description: |
+      Build the proprietary Context Engine that serves as the AI orchestration
+      layer, understanding business context and automating workflows.
+      This is our core competitive advantage.
+    category: "ai_integration"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 15
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-30"
+    due_date: "2024-02-05"
+    
+    cursor_hints:
+      - "Create intelligent business context processing"
+      - "Implement multi-modal AI orchestration"
+      - "Build workflow automation engine"
+    
+    files_to_create:
+      - "src/ai/context-engine.ts"
+      - "src/ai/workflow-orchestrator.ts"
+      - "src/ai/business-intelligence.ts"
+      - "src/ai/multi-modal-processor.ts"
+      - "src/ai/automation-engine.ts"
+    
+    environment_variables:
+      - "CONTEXT_ENGINE_CONFIG"
+      - "AI_ORCHESTRATION_API_KEY"
+    
+    dependencies: ["CORE-003", "CORE-005"]
+    blocks: ["AI-001", "AI-002", "AI-003"]
+    
+    acceptance_criteria:
+      - "Context Engine processes business data intelligently"
+      - "Multi-modal AI processing functional"
+      - "Workflow automation engine operational"
+      - "Business intelligence insights generated"
+      - "AI orchestration layer complete"
+
+  # Phase 3: Customer Relationship Management (CRM) Features
+  - id: "CRM-001"
+    name: "Customer Management System"
+    description: |
+      Build comprehensive customer management system with profile creation,
+      contact management, interaction history, and AI-powered insights.
+      Support both individual and business customers.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-01"
+    due_date: "2024-02-04"
+    
+    cursor_hints:
+      - "Create customer profile components with HeroUI"
+      - "Implement search and filtering capabilities"
+      - "Add customer interaction timeline"
+    
+    files_to_create:
+      - "src/components/crm/CustomerList.tsx"
+      - "src/components/crm/CustomerProfile.tsx"
+      - "src/components/crm/CustomerForm.tsx"
+      - "src/components/crm/CustomerInteractionHistory.tsx"
+      - "src/components/crm/CustomerSearch.tsx"
+    
+    dependencies: ["CORE-004", "CORE-005"]
+    blocks: ["CRM-002", "CRM-003"]
+    
+    acceptance_criteria:
+      - "Customer profiles with complete information"
+      - "Search and filter functionality"
+      - "Interaction history tracking"
+      - "AI-powered customer insights"
+      - "Mobile-responsive customer management"
+
+  - id: "CRM-002"
+    name: "Customer Communication Hub"
+    description: |
+      Implement unified communication system for customers including
+      email, SMS, call logging, and AI-powered communication suggestions.
+      Track all customer interactions in one place.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-04"
+    due_date: "2024-02-07"
+    
+    cursor_hints:
+      - "Integrate with tRPC communication router"
+      - "Add multi-modal communication interface"
+      - "Implement AI-powered message templates"
+    
+    files_to_create:
+      - "src/components/crm/CommunicationHub.tsx"
+      - "src/components/crm/EmailComposer.tsx"
+      - "src/components/crm/SMSInterface.tsx"
+      - "src/components/crm/CallLogger.tsx"
+      - "src/components/crm/MessageTemplates.tsx"
+    
+    dependencies: ["CRM-001", "CORE-005"]
+    blocks: ["CRM-004", "COMM-001"]
+    
+    acceptance_criteria:
+      - "Unified communication interface"
+      - "Email and SMS integration"
+      - "Call logging and notes"
+      - "AI-suggested responses"
+      - "Communication history tracking"
+
+  - id: "CRM-003"
+    name: "Customer Segmentation and Analytics"
+    description: |
+      Build customer segmentation engine with AI-powered insights,
+      customer lifetime value calculation, churn prediction, and
+      behavioral analytics for targeted marketing.
+    category: "ai_integration"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-05"
+    due_date: "2024-02-09"
+    
+    cursor_hints:
+      - "Implement customer segmentation algorithms"
+      - "Add predictive analytics for customer behavior"
+      - "Create customer value scoring system"
+    
+    files_to_create:
+      - "src/ai/customer-analytics.ts"
+      - "src/components/crm/CustomerSegmentation.tsx"
+      - "src/components/crm/CustomerInsights.tsx"
+      - "src/components/crm/ChurnPrediction.tsx"
+      - "src/components/analytics/CustomerAnalytics.tsx"
+    
+    dependencies: ["CRM-001", "CORE-006"]
+    blocks: ["ANALYTICS-001"]
+    
+    acceptance_criteria:
+      - "Customer segmentation functionality"
+      - "AI-powered customer insights"
+      - "Churn prediction algorithms"
+      - "Customer lifetime value calculation"
+      - "Behavioral analytics dashboard"
+
+  - id: "CRM-004"
+    name: "Lead Management and Qualification"
+    description: |
+      Implement lead capture, qualification, and nurturing system with
+      AI-powered lead scoring, automated follow-ups, and conversion tracking.
+      Support multiple lead sources and qualification workflows.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-07"
+    due_date: "2024-02-11"
+    
+    cursor_hints:
+      - "Create lead capture forms and workflows"
+      - "Implement AI-powered lead scoring"
+      - "Add automated lead nurturing sequences"
+    
+    files_to_create:
+      - "src/components/crm/LeadManagement.tsx"
+      - "src/components/crm/LeadCapture.tsx"
+      - "src/components/crm/LeadQualification.tsx"
+      - "src/components/crm/LeadNurturing.tsx"
+      - "src/components/crm/LeadScoring.tsx"
+    
+    dependencies: ["CRM-002", "CORE-006"]
+    blocks: ["MARKETING-001"]
+    
+    acceptance_criteria:
+      - "Lead capture and management system"
+      - "AI-powered lead scoring"
+      - "Automated lead qualification"
+      - "Lead nurturing workflows"
+      - "Conversion tracking and analytics"
+
+  - id: "CRM-005"
+    name: "Customer Onboarding and Success"
+    description: |
+      Build customer onboarding workflows with automated welcome sequences,
+      milestone tracking, and success metrics. Include customer health scoring
+      and proactive engagement triggers.
+    category: "frontend"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 6
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-10"
+    due_date: "2024-02-14"
+    
+    cursor_hints:
+      - "Create onboarding workflow components"
+      - "Implement milestone tracking system"
+      - "Add customer health scoring"
+    
+    files_to_create:
+      - "src/components/crm/CustomerOnboarding.tsx"
+      - "src/components/crm/OnboardingWorkflow.tsx"
+      - "src/components/crm/MilestoneTracking.tsx"
+      - "src/components/crm/CustomerHealthScore.tsx"
+      - "src/components/crm/SuccessMetrics.tsx"
+    
+    dependencies: ["CRM-003", "CORE-006"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Automated onboarding workflows"
+      - "Milestone tracking and completion"
+      - "Customer health scoring"
+      - "Proactive engagement triggers"
+      - "Success metrics dashboard"
+
+  # Phase 4: Job and Project Management
+  - id: "JOB-001"
+    name: "Job Management System Foundation"
+    description: |
+      Build comprehensive job management system with job creation, scheduling,
+      status tracking, and team assignment. Support different job types and
+      workflow stages for various industries.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-08"
+    due_date: "2024-02-12"
+    
+    cursor_hints:
+      - "Create job management interface with HeroUI"
+      - "Implement job workflow state management"
+      - "Add team assignment and collaboration features"
+    
+    files_to_create:
+      - "src/components/jobs/JobManagement.tsx"
+      - "src/components/jobs/JobList.tsx"
+      - "src/components/jobs/JobForm.tsx"
+      - "src/components/jobs/JobDetails.tsx"
+      - "src/components/jobs/JobStatusTracker.tsx"
+      - "src/components/jobs/TeamAssignment.tsx"
+    
+    dependencies: ["CORE-004", "CORE-005"]
+    blocks: ["JOB-002", "JOB-003"]
+    
+    acceptance_criteria:
+      - "Complete job creation and management"
+      - "Job workflow and status tracking"
+      - "Team assignment functionality"
+      - "Job details and documentation"
+      - "Mobile-responsive job management"
+
+  - id: "JOB-002"
+    name: "Job Scheduling and Dispatch"
+    description: |
+      Implement intelligent job scheduling system with calendar integration,
+      resource allocation, travel time optimization, and automated dispatching.
+      Include conflict resolution and schedule optimization.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-12"
+    due_date: "2024-02-16"
+    
+    cursor_hints:
+      - "Integrate with calendar system"
+      - "Implement AI-powered schedule optimization"
+      - "Add drag-and-drop scheduling interface"
+    
+    files_to_create:
+      - "src/components/jobs/JobScheduling.tsx"
+      - "src/components/jobs/ScheduleOptimizer.tsx"
+      - "src/components/jobs/DispatchBoard.tsx"
+      - "src/components/jobs/ResourceAllocation.tsx"
+      - "src/components/jobs/TravelOptimization.tsx"
+    
+    dependencies: ["JOB-001", "CAL-001"]
+    blocks: ["JOB-004"]
+    
+    acceptance_criteria:
+      - "Intelligent job scheduling interface"
+      - "Calendar integration and sync"
+      - "Resource allocation and optimization"
+      - "Travel time calculation and routing"
+      - "Automated dispatch notifications"
+
+  - id: "JOB-003"
+    name: "Job Documentation and Media"
+    description: |
+      Build job documentation system with photo capture, video recording,
+      document attachments, and AI-powered content analysis. Support
+      before/after photos and progress documentation.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-14"
+    due_date: "2024-02-18"
+    
+    cursor_hints:
+      - "Implement media upload and management"
+      - "Add AI-powered image analysis"
+      - "Create document organization system"
+    
+    files_to_create:
+      - "src/components/jobs/JobDocumentation.tsx"
+      - "src/components/jobs/MediaUpload.tsx"
+      - "src/components/jobs/PhotoCapture.tsx"
+      - "src/components/jobs/VideoRecording.tsx"
+      - "src/components/jobs/DocumentManager.tsx"
+    
+    dependencies: ["JOB-001", "CORE-006"]
+    blocks: ["JOB-005"]
+    
+    acceptance_criteria:
+      - "Media capture and upload functionality"
+      - "AI-powered image and document analysis"
+      - "Before/after photo comparison"
+      - "Progress documentation system"
+      - "Document organization and search"
+
+  - id: "JOB-004"
+    name: "Job Costing and Profitability"
+    description: |
+      Implement job costing system with material tracking, labor costs,
+      overhead allocation, and real-time profitability analysis. Include
+      cost estimation and budget tracking.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-16"
+    due_date: "2024-02-20"
+    
+    cursor_hints:
+      - "Create job costing components"
+      - "Implement material and labor tracking"
+      - "Add profitability analysis dashboard"
+    
+    files_to_create:
+      - "src/components/jobs/JobCosting.tsx"
+      - "src/components/jobs/MaterialTracking.tsx"
+      - "src/components/jobs/LaborCosts.tsx"
+      - "src/components/jobs/ProfitabilityAnalysis.tsx"
+      - "src/components/jobs/CostEstimator.tsx"
+    
+    dependencies: ["JOB-002", "FIN-001"]
+    blocks: ["ANALYTICS-002"]
+    
+    acceptance_criteria:
+      - "Comprehensive job costing system"
+      - "Material and labor cost tracking"
+      - "Real-time profitability analysis"
+      - "Cost estimation and budgeting"
+      - "Overhead allocation functionality"
+
+  - id: "JOB-005"
+    name: "Job Completion and Quality Control"
+    description: |
+      Build job completion workflow with quality checklists, customer sign-off,
+      satisfaction surveys, and automated follow-up sequences. Include
+      warranty tracking and maintenance scheduling.
+    category: "frontend"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 6
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-18"
+    due_date: "2024-02-22"
+    
+    cursor_hints:
+      - "Create job completion workflows"
+      - "Implement quality control checklists"
+      - "Add customer satisfaction surveys"
+    
+    files_to_create:
+      - "src/components/jobs/JobCompletion.tsx"
+      - "src/components/jobs/QualityChecklist.tsx"
+      - "src/components/jobs/CustomerSignOff.tsx"
+      - "src/components/jobs/SatisfactionSurvey.tsx"
+      - "src/components/jobs/WarrantyTracking.tsx"
+    
+    dependencies: ["JOB-003", "CRM-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Job completion workflow system"
+      - "Quality control and checklists"
+      - "Customer sign-off functionality"
+      - "Satisfaction survey integration"
+      - "Warranty and maintenance tracking"
+
+  # Phase 5: Communications System (24/7 AI Front Desk)
+  - id: "COMM-001"
+    name: "Multi-Modal Communication Infrastructure"
+    description: |
+      Build the foundation for multi-modal communications including
+      SMS, email, voice calls, video calls, and live chat. Integrate
+      with external providers like Twilio, SendGrid, and Zoom.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-05"
+    due_date: "2024-02-10"
+    
+    cursor_hints:
+      - "Integrate with Twilio for SMS and voice"
+      - "Set up SendGrid for email communications"
+      - "Implement webhook handlers for external providers"
+    
+    files_to_create:
+      - "src/lib/communications/twilio-client.ts"
+      - "src/lib/communications/sendgrid-client.ts"
+      - "src/lib/communications/zoom-client.ts"
+      - "src/server/routers/communications.ts"
+      - "src/lib/communications/webhook-handlers.ts"
+    
+    environment_variables:
+      - "TWILIO_ACCOUNT_SID"
+      - "TWILIO_AUTH_TOKEN"
+      - "SENDGRID_API_KEY"
+      - "ZOOM_API_KEY"
+    
+    dependencies: ["CORE-004", "CORE-005"]
+    blocks: ["COMM-002", "COMM-003", "AI-004"]
+    
+    acceptance_criteria:
+      - "SMS sending and receiving functionality"
+      - "Email sending and tracking"
+      - "Voice call integration"
+      - "Video call scheduling"
+      - "Webhook processing for all channels"
+
+  - id: "COMM-002"
+    name: "AI-Powered Phone Agent"
+    description: |
+      Implement the 24/7 AI phone agent with natural language processing,
+      call routing, appointment booking, and intelligent call handling.
+      This is a core competitive feature.
+    category: "ai_integration"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 15
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-10"
+    due_date: "2024-02-16"
+    
+    cursor_hints:
+      - "Integrate with speech-to-text and text-to-speech"
+      - "Implement conversational AI with business context"
+      - "Add appointment booking from voice conversations"
+    
+    files_to_create:
+      - "src/ai/phone-agent.ts"
+      - "src/ai/speech-processing.ts"
+      - "src/ai/conversation-handler.ts"
+      - "src/components/communications/PhoneAgent.tsx"
+      - "src/lib/communications/call-router.ts"
+    
+    environment_variables:
+      - "ELEVENLABS_API_KEY"
+      - "DEEPGRAM_API_KEY"
+    
+    dependencies: ["COMM-001", "CORE-006"]
+    blocks: ["COMM-004"]
+    
+    acceptance_criteria:
+      - "24/7 AI phone answering service"
+      - "Natural conversation handling"
+      - "Appointment booking via voice"
+      - "Call routing and escalation"
+      - "Voice sentiment analysis"
+
+  - id: "COMM-003"
+    name: "AI Chat and Live Support"
+    description: |
+      Build AI-powered chat system for website integration, live support
+      escalation, and multi-language support. Include chat widget for
+      customer websites and internal support interface.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-12"
+    due_date: "2024-02-17"
+    
+    cursor_hints:
+      - "Create embeddable chat widget"
+      - "Implement AI-human handoff workflows"
+      - "Add multi-language chat support"
+    
+    files_to_create:
+      - "src/components/communications/ChatWidget.tsx"
+      - "src/components/communications/LiveSupport.tsx"
+      - "src/components/communications/ChatInterface.tsx"
+      - "src/ai/chat-agent.ts"
+      - "src/lib/communications/chat-router.ts"
+    
+    dependencies: ["COMM-001", "CORE-006"]
+    blocks: ["COMM-005"]
+    
+    acceptance_criteria:
+      - "Embeddable website chat widget"
+      - "AI-powered chat responses"
+      - "Live agent escalation"
+      - "Multi-language support"
+      - "Chat history and analytics"
+
+  - id: "COMM-004"
+    name: "Email Campaign and Automation"
+    description: |
+      Implement email marketing automation with AI-generated content,
+      personalization, automated sequences, and performance tracking.
+      Support drip campaigns and behavioral triggers.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-16"
+    due_date: "2024-02-21"
+    
+    cursor_hints:
+      - "Create email campaign builder"
+      - "Implement AI content generation for emails"
+      - "Add automated email sequences"
+    
+    files_to_create:
+      - "src/components/communications/EmailCampaign.tsx"
+      - "src/components/communications/EmailBuilder.tsx"
+      - "src/components/communications/EmailAutomation.tsx"
+      - "src/ai/email-generator.ts"
+      - "src/lib/communications/email-scheduler.ts"
+    
+    dependencies: ["COMM-002", "CRM-003"]
+    blocks: ["MARKETING-002"]
+    
+    acceptance_criteria:
+      - "Email campaign creation and management"
+      - "AI-generated email content"
+      - "Automated email sequences"
+      - "Personalization and segmentation"
+      - "Email performance analytics"
+
+  - id: "COMM-005"
+    name: "SMS Marketing and Notifications"
+    description: |
+      Build SMS marketing system with bulk messaging, automated notifications,
+      appointment reminders, and two-way SMS conversations. Include
+      compliance features and opt-out management.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 6
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-18"
+    due_date: "2024-02-23"
+    
+    cursor_hints:
+      - "Implement SMS campaign management"
+      - "Add automated appointment reminders"
+      - "Include compliance and opt-out features"
+    
+    files_to_create:
+      - "src/components/communications/SMSCampaign.tsx"
+      - "src/components/communications/SMSAutomation.tsx"
+      - "src/components/communications/SMSCompliance.tsx"
+      - "src/lib/communications/sms-scheduler.ts"
+    
+    dependencies: ["COMM-003", "CAL-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "SMS campaign creation and sending"
+      - "Automated appointment reminders"
+      - "Two-way SMS conversations"
+      - "Compliance and opt-out management"
+      - "SMS delivery tracking"
+
+  # Phase 6: Calendar and Scheduling System
+  - id: "CAL-001"
+    name: "Advanced Calendar System"
+    description: |
+      Build comprehensive calendar system with multiple views, resource
+      scheduling, conflict detection, and integration with external calendars.
+      Support team calendars and resource booking.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-08"
+    due_date: "2024-02-13"
+    
+    cursor_hints:
+      - "Use a robust calendar library like FullCalendar"
+      - "Implement drag-and-drop scheduling"
+      - "Add multiple calendar views (day, week, month)"
+    
+    files_to_create:
+      - "src/components/calendar/CalendarView.tsx"
+      - "src/components/calendar/EventForm.tsx"
+      - "src/components/calendar/ResourceScheduler.tsx"
+      - "src/components/calendar/ConflictDetector.tsx"
+      - "src/lib/calendar/calendar-utils.ts"
+    
+    terminal_commands:
+      - "npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction"
+    
+    dependencies: ["CORE-004", "CORE-005"]
+    blocks: ["CAL-002", "JOB-002"]
+    
+    acceptance_criteria:
+      - "Multiple calendar view options"
+      - "Drag-and-drop event scheduling"
+      - "Resource conflict detection"
+      - "Team calendar management"
+      - "External calendar integration"
+
+  - id: "CAL-002"
+    name: "AI-Powered Appointment Booking"
+    description: |
+      Implement intelligent appointment booking system with availability
+      optimization, customer preferences, travel time calculation, and
+      automated scheduling suggestions. Include online booking portal.
+    category: "ai_integration"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-13"
+    due_date: "2024-02-18"
+    
+    cursor_hints:
+      - "Implement AI scheduling optimization"
+      - "Create customer-facing booking portal"
+      - "Add travel time and buffer calculations"
+    
+    files_to_create:
+      - "src/components/calendar/AppointmentBooking.tsx"
+      - "src/components/calendar/OnlineBookingPortal.tsx"
+      - "src/ai/scheduling-optimizer.ts"
+      - "src/lib/calendar/availability-engine.ts"
+      - "src/lib/calendar/travel-calculator.ts"
+    
+    dependencies: ["CAL-001", "CORE-006"]
+    blocks: ["CAL-003"]
+    
+    acceptance_criteria:
+      - "AI-optimized appointment scheduling"
+      - "Customer online booking portal"
+      - "Automatic availability detection"
+      - "Travel time optimization"
+      - "Customer preference learning"
+
+  - id: "CAL-003"
+    name: "Calendar Integrations and Sync"
+    description: |
+      Build two-way sync with Google Calendar, Outlook, Apple Calendar,
+      and other external calendar systems. Handle timezone management,
+      recurring events, and sync conflict resolution.
+    category: "backend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-18"
+    due_date: "2024-02-23"
+    
+    cursor_hints:
+      - "Integrate with Google Calendar API"
+      - "Add Microsoft Graph API for Outlook"
+      - "Implement CalDAV for other calendar systems"
+    
+    files_to_create:
+      - "src/lib/calendar/google-calendar.ts"
+      - "src/lib/calendar/outlook-calendar.ts"
+      - "src/lib/calendar/caldav-sync.ts"
+      - "src/lib/calendar/sync-manager.ts"
+      - "src/lib/calendar/timezone-handler.ts"
+    
+    environment_variables:
+      - "GOOGLE_CALENDAR_API_KEY"
+      - "MICROSOFT_GRAPH_API_KEY"
+    
+    dependencies: ["CAL-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Google Calendar two-way sync"
+      - "Outlook calendar integration"
+      - "Timezone handling and conversion"
+      - "Recurring event management"
+      - "Sync conflict resolution"
+
+  - id: "CAL-004"
+    name: "Resource and Equipment Scheduling"
+    description: |
+      Implement resource scheduling for equipment, vehicles, and facilities.
+      Include resource availability tracking, maintenance scheduling, and
+      utilization analytics. Support resource booking workflows.
+    category: "frontend"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 6
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-20"
+    due_date: "2024-02-25"
+    
+    cursor_hints:
+      - "Create resource management interface"
+      - "Implement resource booking workflows"
+      - "Add maintenance scheduling"
+    
+    files_to_create:
+      - "src/components/calendar/ResourceManagement.tsx"
+      - "src/components/calendar/ResourceBooking.tsx"
+      - "src/components/calendar/MaintenanceScheduler.tsx"
+      - "src/components/analytics/ResourceUtilization.tsx"
+    
+    dependencies: ["CAL-001"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Resource scheduling and booking"
+      - "Equipment availability tracking"
+      - "Maintenance scheduling system"
+      - "Resource utilization analytics"
+      - "Booking conflict prevention"
+
+  # Phase 7: Financial Management System (Intelligent Co-Pilot)
+  - id: "FIN-001"
+    name: "Financial Dashboard and Intelligence"
+    description: |
+      Build comprehensive financial dashboard with real-time P&L tracking,
+      cash flow analysis, and AI-powered financial insights. Include
+      interactive charts and data visualization.
+    category: "frontend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-12"
+    due_date: "2024-02-18"
+    
+    cursor_hints:
+      - "Use Chart.js or Recharts for financial visualizations"
+      - "Implement real-time data updates"
+      - "Create interactive financial reports"
+    
+    files_to_create:
+      - "src/components/financial/FinancialDashboard.tsx"
+      - "src/components/financial/ProfitLossChart.tsx"
+      - "src/components/financial/CashFlowAnalysis.tsx"
+      - "src/components/financial/FinancialInsights.tsx"
+      - "src/components/financial/RevenueTracker.tsx"
+    
+    terminal_commands:
+      - "npm install recharts react-chartjs-2 chart.js"
+    
+    dependencies: ["CORE-004", "CORE-005"]
+    blocks: ["FIN-002", "FIN-003"]
+    
+    acceptance_criteria:
+      - "Real-time financial dashboard"
+      - "Interactive P&L visualization"
+      - "Cash flow analysis and forecasting"
+      - "AI-powered financial insights"
+      - "Mobile-responsive financial reporting"
+
+  - id: "FIN-002"
+    name: "Invoicing and Billing System"
+    description: |
+      Implement comprehensive invoicing system with automated generation,
+      customizable templates, payment tracking, and automated reminders.
+      Support recurring billing and subscription management.
+    category: "frontend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-15"
+    due_date: "2024-02-21"
+    
+    cursor_hints:
+      - "Create invoice builder with drag-and-drop"
+      - "Implement PDF generation for invoices"
+      - "Add payment portal integration"
+    
+    files_to_create:
+      - "src/components/financial/InvoiceBuilder.tsx"
+      - "src/components/financial/InvoiceList.tsx"
+      - "src/components/financial/InvoiceTemplate.tsx"
+      - "src/components/financial/PaymentTracking.tsx"
+      - "src/components/financial/RecurringBilling.tsx"
+      - "src/lib/financial/pdf-generator.ts"
+    
+    terminal_commands:
+      - "npm install jspdf html2canvas react-pdf @react-pdf/renderer"
+    
+    dependencies: ["FIN-001", "CORE-005"]
+    blocks: ["FIN-004"]
+    
+    acceptance_criteria:
+      - "Professional invoice creation and customization"
+      - "Automated invoice generation from jobs"
+      - "PDF generation and email delivery"
+      - "Payment tracking and status updates"
+      - "Recurring billing automation"
+
+  - id: "FIN-003"
+    name: "Payment Processing Integration"
+    description: |
+      Integrate with multiple payment processors including Stripe, Square,
+      PayPal, and bank transfers. Support online payments, recurring billing,
+      and automated payment reconciliation.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-18"
+    due_date: "2024-02-24"
+    
+    cursor_hints:
+      - "Integrate Stripe for credit card processing"
+      - "Add Square for in-person payments"
+      - "Implement webhook handling for payment updates"
+    
+    files_to_create:
+      - "src/lib/financial/stripe-client.ts"
+      - "src/lib/financial/square-client.ts"
+      - "src/lib/financial/paypal-client.ts"
+      - "src/lib/financial/payment-reconciler.ts"
+      - "src/server/routers/payments.ts"
+    
+    environment_variables:
+      - "STRIPE_SECRET_KEY"
+      - "STRIPE_WEBHOOK_SECRET"
+      - "SQUARE_APPLICATION_ID"
+      - "PAYPAL_CLIENT_ID"
+    
+    dependencies: ["FIN-002"]
+    blocks: ["FIN-005"]
+    
+    acceptance_criteria:
+      - "Multi-processor payment integration"
+      - "Secure payment processing"
+      - "Automated payment reconciliation"
+      - "Recurring payment support"
+      - "Payment failure handling"
+
+  - id: "FIN-004"
+    name: "Expense Tracking and Management"
+    description: |
+      Build expense tracking system with receipt capture, AI-powered
+      categorization, mileage tracking, and tax preparation features.
+      Include expense approval workflows for teams.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-21"
+    due_date: "2024-02-27"
+    
+    cursor_hints:
+      - "Implement receipt scanning with OCR"
+      - "Add AI-powered expense categorization"
+      - "Create mileage tracking with GPS"
+    
+    files_to_create:
+      - "src/components/financial/ExpenseTracker.tsx"
+      - "src/components/financial/ReceiptCapture.tsx"
+      - "src/components/financial/MileageTracker.tsx"
+      - "src/components/financial/ExpenseCategories.tsx"
+      - "src/ai/expense-categorizer.ts"
+    
+    dependencies: ["FIN-002", "CORE-006"]
+    blocks: ["FIN-006"]
+    
+    acceptance_criteria:
+      - "Receipt capture and OCR processing"
+      - "AI-powered expense categorization"
+      - "Mileage tracking and calculation"
+      - "Expense approval workflows"
+      - "Tax preparation reports"
+
+  - id: "FIN-005"
+    name: "Accounting Software Integration"
+    description: |
+      Integrate with major accounting software including QuickBooks,
+      Xero, FreshBooks, and Wave. Support automatic sync of transactions,
+      customers, and financial data with conflict resolution.
+    category: "backend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-24"
+    due_date: "2024-03-02"
+    
+    cursor_hints:
+      - "Integrate with QuickBooks Online API"
+      - "Add Xero API integration"
+      - "Implement data sync and conflict resolution"
+    
+    files_to_create:
+      - "src/lib/integrations/quickbooks-client.ts"
+      - "src/lib/integrations/xero-client.ts"
+      - "src/lib/integrations/freshbooks-client.ts"
+      - "src/lib/integrations/sync-engine.ts"
+      - "src/components/financial/AccountingSync.tsx"
+    
+    environment_variables:
+      - "QUICKBOOKS_CLIENT_ID"
+      - "QUICKBOOKS_CLIENT_SECRET"
+      - "XERO_CLIENT_ID"
+      - "XERO_CLIENT_SECRET"
+    
+    dependencies: ["FIN-003"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "QuickBooks Online integration"
+      - "Xero accounting sync"
+      - "Automatic transaction sync"
+      - "Customer and vendor sync"
+      - "Conflict resolution workflows"
+
+  - id: "FIN-006"
+    name: "Financial Forecasting and Analytics"
+    description: |
+      Implement AI-powered financial forecasting with revenue predictions,
+      cash flow modeling, budget planning, and business performance
+      analytics. Include scenario planning and what-if analysis.
+    category: "ai_integration"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-27"
+    due_date: "2024-03-06"
+    
+    cursor_hints:
+      - "Implement machine learning for revenue forecasting"
+      - "Create cash flow prediction models"
+      - "Add scenario planning tools"
+    
+    files_to_create:
+      - "src/ai/financial-forecaster.ts"
+      - "src/components/financial/RevenueForecasting.tsx"
+      - "src/components/financial/CashFlowModeling.tsx"
+      - "src/components/financial/BudgetPlanning.tsx"
+      - "src/components/financial/ScenarioPlanner.tsx"
+    
+    dependencies: ["FIN-004", "CORE-006"]
+    blocks: ["ANALYTICS-003"]
+    
+    acceptance_criteria:
+      - "AI-powered revenue forecasting"
+      - "Cash flow prediction modeling"
+      - "Budget planning and tracking"
+      - "Scenario planning tools"
+      - "Performance analytics dashboard"
+
+  # Phase 8: Advanced AI Features
+  - id: "AI-001"
+    name: "Multi-Modal AI Processing Engine"
+    description: |
+      Build advanced multi-modal AI system capable of processing text,
+      voice, images, videos, and documents. Implement unified AI pipeline
+      with context-aware processing and intelligent routing.
+    category: "ai_integration"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 15
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-08"
+    due_date: "2024-02-15"
+    
+    cursor_hints:
+      - "Implement unified multi-modal processing pipeline"
+      - "Add context-aware AI routing"
+      - "Create intelligent content analysis"
+    
+    files_to_create:
+      - "src/ai/multi-modal-engine.ts"
+      - "src/ai/image-processor.ts"
+      - "src/ai/video-analyzer.ts"
+      - "src/ai/document-analyzer.ts"
+      - "src/ai/content-classifier.ts"
+    
+    environment_variables:
+      - "OPENAI_VISION_API_KEY"
+      - "GOOGLE_VISION_API_KEY"
+      - "AZURE_COMPUTER_VISION_KEY"
+    
+    dependencies: ["CORE-006"]
+    blocks: ["AI-002", "AI-003"]
+    
+    acceptance_criteria:
+      - "Multi-modal content processing"
+      - "Intelligent content classification"
+      - "Context-aware AI routing"
+      - "Image and video analysis"
+      - "Document understanding and extraction"
+
+  - id: "AI-002"
+    name: "Intelligent Workflow Automation"
+    description: |
+      Implement intelligent workflow automation engine with AI-powered
+      trigger detection, workflow optimization, and predictive automation.
+      Support complex multi-step business processes.
+    category: "ai_integration"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-15"
+    due_date: "2024-02-22"
+    
+    cursor_hints:
+      - "Create workflow automation engine"
+      - "Implement AI-powered trigger detection"
+      - "Add predictive automation capabilities"
+    
+    files_to_create:
+      - "src/ai/workflow-engine.ts"
+      - "src/ai/trigger-detector.ts"
+      - "src/ai/automation-optimizer.ts"
+      - "src/components/ai/WorkflowBuilder.tsx"
+      - "src/components/ai/AutomationDashboard.tsx"
+    
+    dependencies: ["AI-001", "CORE-006"]
+    blocks: ["AI-004"]
+    
+    acceptance_criteria:
+      - "Intelligent workflow creation and management"
+      - "AI-powered trigger detection"
+      - "Workflow optimization suggestions"
+      - "Predictive automation capabilities"
+      - "Complex multi-step process support"
+
+  - id: "AI-003"
+    name: "Business Intelligence and Insights"
+    description: |
+      Build AI-powered business intelligence system with automated insights,
+      anomaly detection, predictive analytics, and intelligent recommendations.
+      Generate actionable business insights automatically.
+    category: "ai_integration"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-20"
+    due_date: "2024-02-28"
+    
+    cursor_hints:
+      - "Implement automated insight generation"
+      - "Add anomaly detection algorithms"
+      - "Create predictive analytics models"
+    
+    files_to_create:
+      - "src/ai/business-intelligence.ts"
+      - "src/ai/insight-generator.ts"
+      - "src/ai/anomaly-detector.ts"
+      - "src/ai/predictive-analytics.ts"
+      - "src/components/ai/InsightsDashboard.tsx"
+    
+    dependencies: ["AI-001", "FIN-006"]
+    blocks: ["ANALYTICS-004"]
+    
+    acceptance_criteria:
+      - "Automated business insight generation"
+      - "Anomaly detection and alerting"
+      - "Predictive analytics capabilities"
+      - "Intelligent recommendations engine"
+      - "Real-time business intelligence"
+
+  - id: "AI-004"
+    name: "AI Training and Model Management"
+    description: |
+      Implement AI model training pipeline with custom model fine-tuning,
+      performance monitoring, A/B testing, and continuous improvement.
+      Support business-specific AI model customization.
+    category: "ai_integration"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-25"
+    due_date: "2024-03-05"
+    
+    cursor_hints:
+      - "Implement model training pipeline"
+      - "Add A/B testing for AI models"
+      - "Create performance monitoring"
+    
+    files_to_create:
+      - "src/ai/model-trainer.ts"
+      - "src/ai/model-monitor.ts"
+      - "src/ai/ab-testing.ts"
+      - "src/components/ai/ModelManagement.tsx"
+      - "src/lib/ai/performance-tracker.ts"
+    
+    dependencies: ["AI-002", "COMM-001"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "AI model training and fine-tuning"
+      - "Model performance monitoring"
+      - "A/B testing framework for AI"
+      - "Continuous model improvement"
+      - "Business-specific model customization"
+
+  # Phase 9: Marketing Automation and Analytics
+  - id: "MARKETING-001"
+    name: "Marketing Campaign Management"
+    description: |
+      Build comprehensive marketing campaign system with multi-channel
+      campaigns, audience segmentation, A/B testing, and performance
+      tracking. Support email, SMS, social media, and ads management.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-22"
+    due_date: "2024-02-28"
+    
+    cursor_hints:
+      - "Create campaign builder with drag-and-drop"
+      - "Implement audience segmentation tools"
+      - "Add A/B testing framework"
+    
+    files_to_create:
+      - "src/components/marketing/CampaignBuilder.tsx"
+      - "src/components/marketing/AudienceSegmentation.tsx"
+      - "src/components/marketing/ABTestManager.tsx"
+      - "src/components/marketing/CampaignAnalytics.tsx"
+      - "src/lib/marketing/campaign-engine.ts"
+    
+    dependencies: ["CRM-004", "COMM-004"]
+    blocks: ["MARKETING-002"]
+    
+    acceptance_criteria:
+      - "Multi-channel campaign creation"
+      - "Advanced audience segmentation"
+      - "A/B testing capabilities"
+      - "Campaign performance tracking"
+      - "Automated campaign optimization"
+
+  - id: "MARKETING-002"
+    name: "Social Media Management"
+    description: |
+      Implement social media management with content scheduling,
+      multi-platform posting, engagement tracking, and AI-powered
+      content generation. Support major social platforms.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-26"
+    due_date: "2024-03-04"
+    
+    cursor_hints:
+      - "Integrate with social media APIs"
+      - "Create content scheduling calendar"
+      - "Add AI content generation for social posts"
+    
+    files_to_create:
+      - "src/components/marketing/SocialMediaManager.tsx"
+      - "src/components/marketing/ContentScheduler.tsx"
+      - "src/components/marketing/SocialAnalytics.tsx"
+      - "src/lib/integrations/facebook-api.ts"
+      - "src/lib/integrations/twitter-api.ts"
+      - "src/lib/integrations/linkedin-api.ts"
+    
+    environment_variables:
+      - "FACEBOOK_APP_ID"
+      - "TWITTER_API_KEY"
+      - "LINKEDIN_CLIENT_ID"
+    
+    dependencies: ["MARKETING-001", "COMM-004"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Multi-platform social media posting"
+      - "Content scheduling and automation"
+      - "Social media analytics and insights"
+      - "AI-powered content suggestions"
+      - "Engagement tracking and reporting"
+
+  - id: "ANALYTICS-001"
+    name: "Business Performance Analytics"
+    description: |
+      Build comprehensive analytics dashboard with KPI tracking,
+      revenue analytics, customer behavior analysis, and comparative
+      reporting. Include executive-level reporting and insights.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-18"
+    due_date: "2024-02-25"
+    
+    cursor_hints:
+      - "Create interactive analytics dashboards"
+      - "Implement KPI tracking and visualization"
+      - "Add comparative reporting features"
+    
+    files_to_create:
+      - "src/components/analytics/AnalyticsDashboard.tsx"
+      - "src/components/analytics/KPITracker.tsx"
+      - "src/components/analytics/RevenueAnalytics.tsx"
+      - "src/components/analytics/CustomerBehavior.tsx"
+      - "src/components/analytics/ExecutiveReports.tsx"
+    
+    dependencies: ["CRM-003", "FIN-001"]
+    blocks: ["ANALYTICS-002"]
+    
+    acceptance_criteria:
+      - "Comprehensive analytics dashboard"
+      - "Real-time KPI tracking"
+      - "Revenue and financial analytics"
+      - "Customer behavior insights"
+      - "Executive reporting capabilities"
+
+  - id: "ANALYTICS-002"
+    name: "Operational Analytics and Optimization"
+    description: |
+      Implement operational analytics with job performance tracking,
+      team productivity metrics, resource utilization analysis, and
+      optimization recommendations. Include predictive analytics.
+    category: "ai_integration"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-25"
+    due_date: "2024-03-03"
+    
+    cursor_hints:
+      - "Implement job performance analytics"
+      - "Create team productivity dashboards"
+      - "Add optimization recommendation engine"
+    
+    files_to_create:
+      - "src/components/analytics/OperationalAnalytics.tsx"
+      - "src/components/analytics/JobPerformance.tsx"
+      - "src/components/analytics/TeamProductivity.tsx"
+      - "src/ai/optimization-engine.ts"
+      - "src/components/analytics/PredictiveAnalytics.tsx"
+    
+    dependencies: ["JOB-004", "ANALYTICS-001"]
+    blocks: ["ANALYTICS-003"]
+    
+    acceptance_criteria:
+      - "Job performance tracking and analysis"
+      - "Team productivity metrics"
+      - "Resource utilization analytics"
+      - "Optimization recommendations"
+      - "Predictive operational insights"
+
+  - id: "ANALYTICS-003"
+    name: "Custom Reporting and Data Export"
+    description: |
+      Build flexible reporting system with custom report builder,
+      scheduled reports, data export capabilities, and white-label
+      client reports. Support multiple export formats.
+    category: "frontend"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-01"
+    due_date: "2024-03-08"
+    
+    cursor_hints:
+      - "Create drag-and-drop report builder"
+      - "Implement scheduled report generation"
+      - "Add multiple export format support"
+    
+    files_to_create:
+      - "src/components/analytics/ReportBuilder.tsx"
+      - "src/components/analytics/ScheduledReports.tsx"
+      - "src/components/analytics/DataExporter.tsx"
+      - "src/components/analytics/ClientReports.tsx"
+      - "src/lib/reporting/export-engine.ts"
+    
+    terminal_commands:
+      - "npm install xlsx csv-writer pdfkit"
+    
+    dependencies: ["ANALYTICS-002", "FIN-006"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Custom report builder interface"
+      - "Scheduled report automation"
+      - "Multiple export formats (PDF, Excel, CSV)"
+      - "White-label client reports"
+      - "Report sharing and distribution"
+
+  # Phase 10: Mobile Application and PWA
+  - id: "MOBILE-001"
+    name: "Progressive Web App Foundation"
+    description: |
+      Convert the application to a full Progressive Web App with offline
+      capabilities, push notifications, background sync, and native-like
+      experience. Implement service worker and caching strategies.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-02-28"
+    due_date: "2024-03-06"
+    
+    cursor_hints:
+      - "Implement service worker for offline functionality"
+      - "Add PWA manifest and configuration"
+      - "Create background sync capabilities"
+    
+    files_to_create:
+      - "public/sw.js"
+      - "public/manifest.json"
+      - "src/lib/pwa/service-worker.ts"
+      - "src/lib/pwa/background-sync.ts"
+      - "src/lib/pwa/cache-manager.ts"
+      - "src/components/pwa/InstallPrompt.tsx"
+    
+    terminal_commands:
+      - "npm install workbox-webpack-plugin"
+    
+    dependencies: ["CORE-002", "COMM-001"]
+    blocks: ["MOBILE-002"]
+    
+    acceptance_criteria:
+      - "Full Progressive Web App functionality"
+      - "Offline mode with data sync"
+      - "Push notification support"
+      - "App installation capability"
+      - "Background sync for critical operations"
+
+  - id: "MOBILE-002"
+    name: "Mobile-Optimized Interface"
+    description: |
+      Optimize the entire interface for mobile devices with touch-first
+      design, gesture controls, mobile-specific workflows, and responsive
+      components. Ensure tablet and phone compatibility.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-04"
+    due_date: "2024-03-10"
+    
+    cursor_hints:
+      - "Optimize all components for touch interfaces"
+      - "Add gesture controls for common actions"
+      - "Implement mobile-specific navigation"
+    
+    files_to_create:
+      - "src/components/mobile/MobileNavigation.tsx"
+      - "src/components/mobile/TouchGestures.tsx"
+      - "src/components/mobile/MobileJobManagement.tsx"
+      - "src/components/mobile/MobileCalendar.tsx"
+      - "src/lib/mobile/gesture-handler.ts"
+    
+    dependencies: ["MOBILE-001"]
+    blocks: ["MOBILE-003"]
+    
+    acceptance_criteria:
+      - "Touch-optimized interface design"
+      - "Gesture controls for key actions"
+      - "Mobile-specific navigation patterns"
+      - "Tablet and phone responsive layouts"
+      - "Fast mobile performance"
+
+  - id: "MOBILE-003"
+    name: "Mobile-Specific Features"
+    description: |
+      Implement mobile-specific features including camera integration,
+      GPS tracking, voice recording, barcode scanning, and offline-first
+      job management. Support field worker workflows.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-08"
+    due_date: "2024-03-15"
+    
+    cursor_hints:
+      - "Integrate device camera for photo capture"
+      - "Add GPS tracking for location services"
+      - "Implement voice recording capabilities"
+    
+    files_to_create:
+      - "src/components/mobile/CameraCapture.tsx"
+      - "src/components/mobile/GPSTracker.tsx"
+      - "src/components/mobile/VoiceRecorder.tsx"
+      - "src/components/mobile/BarcodeScanner.tsx"
+      - "src/lib/mobile/device-integration.ts"
+    
+    terminal_commands:
+      - "npm install react-webcam react-qr-scanner"
+    
+    dependencies: ["MOBILE-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Camera integration for photo capture"
+      - "GPS tracking and location services"
+      - "Voice recording and playback"
+      - "Barcode and QR code scanning"
+      - "Offline-first mobile workflows"
+
+  # Phase 11: Testing and Quality Assurance
+  - id: "TEST-001"
+    name: "Unit Testing Framework"
+    description: |
+      Implement comprehensive unit testing with Jest, React Testing Library,
+      and tRPC testing utilities. Achieve 90%+ code coverage for critical
+      business logic and components.
+    category: "testing"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-01"
+    due_date: "2024-03-08"
+    
+    cursor_hints:
+      - "Set up Jest with React Testing Library"
+      - "Create test utilities for tRPC endpoints"
+      - "Implement component testing patterns"
+    
+    files_to_create:
+      - "src/__tests__/utils/test-utils.tsx"
+      - "src/__tests__/components/CRM.test.tsx"
+      - "src/__tests__/components/Jobs.test.tsx"
+      - "src/__tests__/api/trpc.test.tsx"
+      - "src/__tests__/ai/context-engine.test.ts"
+    
+    files_to_modify:
+      - "jest.config.js"
+      - "jest.setup.js"
+    
+    terminal_commands:
+      - "npm install --save-dev @testing-library/jest-dom @testing-library/user-event"
+      - "npm run test"
+    
+    dependencies: ["CORE-005", "CRM-001"]
+    blocks: ["TEST-002"]
+    
+    acceptance_criteria:
+      - "90%+ code coverage for critical paths"
+      - "Unit tests for all business logic"
+      - "Component testing for UI elements"
+      - "API endpoint testing with tRPC"
+      - "Automated test execution in CI/CD"
+
+  - id: "TEST-002"
+    name: "Integration Testing Suite"
+    description: |
+      Build integration testing suite with end-to-end workflow testing,
+      API integration tests, database testing, and external service
+      mocking. Test complete user journeys.
+    category: "testing"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-06"
+    due_date: "2024-03-13"
+    
+    cursor_hints:
+      - "Set up Playwright for E2E testing"
+      - "Create database testing utilities"
+      - "Implement external service mocking"
+    
+    files_to_create:
+      - "tests/e2e/customer-journey.spec.ts"
+      - "tests/e2e/job-workflow.spec.ts"
+      - "tests/integration/api-endpoints.test.ts"
+      - "tests/integration/database.test.ts"
+      - "tests/utils/mock-services.ts"
+    
+    terminal_commands:
+      - "npm install --save-dev @playwright/test"
+      - "npx playwright install"
+    
+    dependencies: ["TEST-001", "CORE-006"]
+    blocks: ["TEST-003"]
+    
+    acceptance_criteria:
+      - "End-to-end user journey testing"
+      - "API integration test coverage"
+      - "Database operation testing"
+      - "External service mocking"
+      - "Cross-browser compatibility testing"
+
+  - id: "TEST-003"
+    name: "Performance and Load Testing"
+    description: |
+      Implement performance testing with Lighthouse CI, load testing
+      with k6, database performance testing, and AI model performance
+      monitoring. Ensure scalability and performance standards.
+    category: "testing"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 6
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-10"
+    due_date: "2024-03-16"
+    
+    cursor_hints:
+      - "Set up Lighthouse CI for performance monitoring"
+      - "Create load testing scenarios with k6"
+      - "Implement database performance benchmarks"
+    
+    files_to_create:
+      - "tests/performance/lighthouse.config.js"
+      - "tests/load/api-load-test.js"
+      - "tests/performance/database-benchmarks.test.ts"
+      - "tests/performance/ai-performance.test.ts"
+    
+    terminal_commands:
+      - "npm install --save-dev @lhci/cli k6"
+    
+    dependencies: ["TEST-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Performance benchmarks and monitoring"
+      - "Load testing for peak usage scenarios"
+      - "Database performance optimization"
+      - "AI model performance tracking"
+      - "Automated performance regression detection"
+
+  # Phase 12: Security and Compliance
+  - id: "SECURITY-001"
+    name: "Enterprise Security Implementation"
+    description: |
+      Implement enterprise-grade security with SOC 2 compliance,
+      data encryption, audit logging, and vulnerability scanning.
+      Ensure data protection and privacy compliance.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-05"
+    due_date: "2024-03-12"
+    
+    cursor_hints:
+      - "Implement comprehensive audit logging"
+      - "Add data encryption at rest and in transit"
+      - "Create security monitoring and alerting"
+    
+    files_to_create:
+      - "src/lib/security/audit-logger.ts"
+      - "src/lib/security/encryption.ts"
+      - "src/lib/security/vulnerability-scanner.ts"
+      - "src/lib/security/compliance-checker.ts"
+      - "src/middleware/security.ts"
+    
+    terminal_commands:
+      - "npm install helmet bcryptjs crypto-js"
+    
+    dependencies: ["CORE-005", "CORE-004"]
+    blocks: ["SECURITY-002"]
+    
+    acceptance_criteria:
+      - "SOC 2 compliance implementation"
+      - "Data encryption at rest and in transit"
+      - "Comprehensive audit logging"
+      - "Vulnerability scanning and monitoring"
+      - "Security incident response procedures"
+
+  - id: "SECURITY-002"
+    name: "Access Control and Permissions"
+    description: |
+      Implement role-based access control (RBAC), multi-factor authentication,
+      session management, and API security. Support enterprise SSO and
+      granular permissions for team management.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-08"
+    due_date: "2024-03-14"
+    
+    cursor_hints:
+      - "Implement RBAC with granular permissions"
+      - "Add multi-factor authentication"
+      - "Create session management and security"
+    
+    files_to_create:
+      - "src/lib/auth/rbac.ts"
+      - "src/lib/auth/mfa.ts"
+      - "src/lib/auth/session-manager.ts"
+      - "src/components/auth/PermissionGate.tsx"
+      - "src/components/admin/UserManagement.tsx"
+    
+    dependencies: ["SECURITY-001", "FOUND-005"]
+    blocks: ["SECURITY-003"]
+    
+    acceptance_criteria:
+      - "Role-based access control system"
+      - "Multi-factor authentication support"
+      - "Enterprise SSO integration"
+      - "Granular permission management"
+      - "Session security and timeout handling"
+
+  - id: "SECURITY-003"
+    name: "Data Privacy and GDPR Compliance"
+    description: |
+      Implement GDPR, CCPA, and other privacy regulation compliance with
+      data subject rights, consent management, data retention policies,
+      and privacy controls. Support right to erasure and data portability.
+    category: "backend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 6
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-12"
+    due_date: "2024-03-18"
+    
+    cursor_hints:
+      - "Implement GDPR compliance features"
+      - "Add consent management system"
+      - "Create data retention and deletion workflows"
+    
+    files_to_create:
+      - "src/lib/privacy/gdpr-compliance.ts"
+      - "src/lib/privacy/consent-manager.ts"
+      - "src/lib/privacy/data-retention.ts"
+      - "src/components/privacy/ConsentBanner.tsx"
+      - "src/components/privacy/DataRequestPortal.tsx"
+    
+    dependencies: ["SECURITY-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "GDPR and CCPA compliance implementation"
+      - "Consent management and tracking"
+      - "Data subject rights portal"
+      - "Automated data retention policies"
+      - "Privacy impact assessment tools"
+
+  # Phase 13: Deployment and DevOps
+  - id: "DEPLOY-001"
+    name: "CI/CD Pipeline and Automation"
+    description: |
+      Set up comprehensive CI/CD pipeline with GitHub Actions, automated
+      testing, security scanning, and deployment automation. Include
+      staging and production environments.
+    category: "deployment"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-10"
+    due_date: "2024-03-16"
+    
+    cursor_hints:
+      - "Create GitHub Actions workflows"
+      - "Set up automated testing pipeline"
+      - "Implement security scanning in CI/CD"
+    
+    files_to_create:
+      - ".github/workflows/ci.yml"
+      - ".github/workflows/deploy-staging.yml"
+      - ".github/workflows/deploy-production.yml"
+      - ".github/workflows/security-scan.yml"
+      - "scripts/deploy.sh"
+    
+    terminal_commands:
+      - "npm install --save-dev husky lint-staged"
+    
+    dependencies: ["TEST-003", "SECURITY-001"]
+    blocks: ["DEPLOY-002"]
+    
+    acceptance_criteria:
+      - "Automated CI/CD pipeline with GitHub Actions"
+      - "Automated testing and quality gates"
+      - "Security scanning and vulnerability checks"
+      - "Staging and production deployment automation"
+      - "Rollback and disaster recovery procedures"
+
+  - id: "DEPLOY-002"
+    name: "Infrastructure as Code"
+    description: |
+      Implement Infrastructure as Code with Terraform or CDK for
+      cloud resources, database setup, monitoring, and scaling.
+      Support multi-environment deployments.
+    category: "deployment"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-14"
+    due_date: "2024-03-21"
+    
+    cursor_hints:
+      - "Set up Terraform for infrastructure management"
+      - "Create environment-specific configurations"
+      - "Implement auto-scaling and load balancing"
+    
+    files_to_create:
+      - "infrastructure/main.tf"
+      - "infrastructure/variables.tf"
+      - "infrastructure/environments/staging.tfvars"
+      - "infrastructure/environments/production.tfvars"
+      - "infrastructure/modules/database.tf"
+    
+    terminal_commands:
+      - "terraform init"
+      - "terraform plan"
+    
+    dependencies: ["DEPLOY-001"]
+    blocks: ["DEPLOY-003"]
+    
+    acceptance_criteria:
+      - "Complete infrastructure as code setup"
+      - "Multi-environment configuration management"
+      - "Auto-scaling and load balancing"
+      - "Database and storage provisioning"
+      - "Network security and firewall rules"
+
+  - id: "DEPLOY-003"
+    name: "Production Deployment and Monitoring"
+    description: |
+      Deploy to production with monitoring, alerting, backup systems,
+      and disaster recovery. Implement blue-green deployments and
+      health checks for zero-downtime updates.
+    category: "deployment"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-18"
+    due_date: "2024-03-24"
+    
+    cursor_hints:
+      - "Set up production monitoring and alerting"
+      - "Implement blue-green deployment strategy"
+      - "Create backup and disaster recovery procedures"
+    
+    files_to_create:
+      - "monitoring/grafana-dashboard.json"
+      - "monitoring/prometheus.yml"
+      - "scripts/backup.sh"
+      - "scripts/disaster-recovery.sh"
+      - "healthcheck/api-health.ts"
+    
+    dependencies: ["DEPLOY-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Production deployment with zero downtime"
+      - "Comprehensive monitoring and alerting"
+      - "Automated backup and recovery systems"
+      - "Health checks and failover procedures"
+      - "Performance monitoring and optimization"
+
+  # Phase 14: Performance and Monitoring
+  - id: "PERF-001"
+    name: "Application Performance Optimization"
+    description: |
+      Optimize application performance with code splitting, lazy loading,
+      caching strategies, and bundle optimization. Achieve sub-second
+      load times and smooth user experience.
+    category: "frontend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-12"
+    due_date: "2024-03-18"
+    
+    cursor_hints:
+      - "Implement code splitting and lazy loading"
+      - "Optimize bundle size and loading performance"
+      - "Add intelligent caching strategies"
+    
+    files_to_create:
+      - "src/lib/performance/code-splitting.ts"
+      - "src/lib/performance/cache-manager.ts"
+      - "src/lib/performance/lazy-loading.ts"
+      - "webpack.config.performance.js"
+    
+    terminal_commands:
+      - "npm install --save-dev webpack-bundle-analyzer"
+    
+    dependencies: ["MOBILE-003", "TEST-003"]
+    blocks: ["PERF-002"]
+    
+    acceptance_criteria:
+      - "Sub-second initial load times"
+      - "Optimized bundle sizes and code splitting"
+      - "Intelligent caching and CDN integration"
+      - "Smooth animations and interactions"
+      - "Mobile performance optimization"
+
+  - id: "PERF-002"
+    name: "Database and API Performance"
+    description: |
+      Optimize database queries, implement connection pooling,
+      add API caching, and create performance monitoring.
+      Ensure scalable backend performance.
+    category: "backend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-16"
+    due_date: "2024-03-22"
+    
+    cursor_hints:
+      - "Optimize database queries and indexing"
+      - "Implement API caching and rate limiting"
+      - "Add database connection pooling"
+    
+    files_to_create:
+      - "src/lib/performance/query-optimizer.ts"
+      - "src/lib/performance/api-cache.ts"
+      - "src/lib/performance/connection-pool.ts"
+      - "src/lib/performance/rate-limiter.ts"
+    
+    dependencies: ["PERF-001"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Optimized database query performance"
+      - "API response caching and compression"
+      - "Database connection pooling"
+      - "Rate limiting and abuse prevention"
+      - "Performance monitoring and alerting"
+
+  # Phase 15: External Integrations
+  - id: "INTEGRATION-001"
+    name: "Business Software Integrations"
+    description: |
+      Integrate with major business software including CRM systems,
+      marketing platforms, e-commerce solutions, and productivity tools.
+      Support data sync and workflow automation.
+    category: "backend"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-08"
+    due_date: "2024-03-16"
+    
+    cursor_hints:
+      - "Integrate with HubSpot, Salesforce APIs"
+      - "Add Shopify and WooCommerce connections"
+      - "Implement Slack and Microsoft Teams integration"
+    
+    files_to_create:
+      - "src/lib/integrations/hubspot.ts"
+      - "src/lib/integrations/salesforce.ts"
+      - "src/lib/integrations/shopify.ts"
+      - "src/lib/integrations/slack.ts"
+      - "src/components/integrations/IntegrationManager.tsx"
+    
+    environment_variables:
+      - "HUBSPOT_API_KEY"
+      - "SALESFORCE_CLIENT_ID"
+      - "SHOPIFY_API_KEY"
+      - "SLACK_BOT_TOKEN"
+    
+    dependencies: ["CORE-005", "FIN-005"]
+    blocks: ["INTEGRATION-002"]
+    
+    acceptance_criteria:
+      - "Major CRM system integrations"
+      - "E-commerce platform connections"
+      - "Marketing platform integrations"
+      - "Productivity tool connections"
+      - "Data sync and workflow automation"
+
+  - id: "INTEGRATION-002"
+    name: "API Marketplace and Webhooks"
+    description: |
+      Build API marketplace for third-party developers with
+      comprehensive documentation, webhook system, and developer
+      portal. Enable ecosystem expansion and custom integrations.
+    category: "backend"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-15"
+    due_date: "2024-03-22"
+    
+    cursor_hints:
+      - "Create developer portal and API documentation"
+      - "Implement webhook system for real-time events"
+      - "Add API rate limiting and authentication"
+    
+    files_to_create:
+      - "src/api/developer-portal.ts"
+      - "src/lib/webhooks/webhook-manager.ts"
+      - "src/lib/api/rate-limiter.ts"
+      - "src/components/developer/APIDocumentation.tsx"
+      - "docs/api-reference.md"
+    
+    dependencies: ["INTEGRATION-001"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Developer portal with API documentation"
+      - "Webhook system for real-time events"
+      - "API rate limiting and authentication"
+      - "Third-party developer onboarding"
+      - "Ecosystem marketplace functionality"
+
+  # Phase 16: Advanced Features and Polish
+  - id: "ADVANCED-001"
+    name: "Advanced Business Intelligence"
+    description: |
+      Implement advanced BI features with predictive analytics,
+      market intelligence, competitive analysis, and industry
+      benchmarking. Create executive dashboards and insights.
+    category: "ai_integration"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 12
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-20"
+    due_date: "2024-03-28"
+    
+    cursor_hints:
+      - "Implement predictive analytics models"
+      - "Add market intelligence data sources"
+      - "Create executive dashboard templates"
+    
+    files_to_create:
+      - "src/ai/predictive-models.ts"
+      - "src/components/bi/MarketIntelligence.tsx"
+      - "src/components/bi/CompetitiveAnalysis.tsx"
+      - "src/components/bi/ExecutiveDashboard.tsx"
+      - "src/lib/data/industry-benchmarks.ts"
+    
+    dependencies: ["AI-003", "ANALYTICS-003"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Predictive analytics and forecasting"
+      - "Market intelligence integration"
+      - "Competitive analysis tools"
+      - "Industry benchmarking"
+      - "Executive-level reporting"
+
+  - id: "ADVANCED-002"
+    name: "Multi-Language and Localization"
+    description: |
+      Implement comprehensive internationalization with multi-language
+      support, currency handling, timezone management, and cultural
+      adaptations for global market expansion.
+    category: "frontend"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 8
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-22"
+    due_date: "2024-03-29"
+    
+    cursor_hints:
+      - "Set up i18n with react-i18next"
+      - "Implement currency and timezone handling"
+      - "Add cultural adaptations and RTL support"
+    
+    files_to_create:
+      - "src/lib/i18n/config.ts"
+      - "src/locales/en/common.json"
+      - "src/locales/es/common.json"
+      - "src/locales/fr/common.json"
+      - "src/components/i18n/LanguageSelector.tsx"
+    
+    terminal_commands:
+      - "npm install react-i18next i18next"
+    
+    dependencies: ["ADVANCED-001"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Multi-language interface support"
+      - "Currency and timezone handling"
+      - "Cultural adaptations and RTL support"
+      - "Localized date and number formatting"
+      - "Dynamic language switching"
+
+  - id: "ADVANCED-003"
+    name: "Advanced Workflow Automation"
+    description: |
+      Build advanced workflow automation with visual builder,
+      conditional logic, external system triggers, and AI-powered
+      workflow optimization. Support complex business processes.
+    category: "ai_integration"
+    priority: 3
+    status: "not_started"
+    estimated_hours: 10
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-03-25"
+    due_date: "2024-04-02"
+    
+    cursor_hints:
+      - "Create visual workflow builder interface"
+      - "Implement conditional logic and branching"
+      - "Add external system trigger support"
+    
+    files_to_create:
+      - "src/components/workflows/VisualBuilder.tsx"
+      - "src/lib/workflows/condition-engine.ts"
+      - "src/lib/workflows/external-triggers.ts"
+      - "src/ai/workflow-optimizer.ts"
+      - "src/components/workflows/WorkflowTemplates.tsx"
+    
+    dependencies: ["AI-002", "INTEGRATION-002"]
+    blocks: []
+    
+    acceptance_criteria:
+      - "Visual workflow builder interface"
+      - "Complex conditional logic support"
+      - "External system trigger integration"
+      - "AI-powered workflow optimization"
+      - "Pre-built workflow templates"
+
 # Template for new tasks (for Cursor AI agents to use)
 task_template:
   id: "CAT-###"  # Category prefix + sequential number
