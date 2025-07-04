@@ -1,0 +1,32 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroui/react": "^2.7.11",
+    "@heroui/theme": "^2.4.17",
+    "@neondatabase/serverless": "^1.0.1",
+    "dotenv": "^17.0.1",
+    "drizzle-orm": "^0.44.2",
+    "framer-motion": "^12.23.0",
+    "next": "15.3.5",
+    "next-themes": "^0.4.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
