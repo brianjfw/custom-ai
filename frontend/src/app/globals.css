@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@import "../styles/glassmorphism.css";
+
+:root {
+  /* Light theme base colors */
+  --background: #f4f3ff;
+  --surface: #faf9f7;
+  --surface-alt: #f8f9fa;
+  --foreground: #2c2c2c;
+  --foreground-secondary: #6c757d;
+  --white: #ffffff;
+  
+  /* Glassmorphism effect variables */
+  --glass-bg: rgb(255 255 255 / 0.1);
+  --glass-bg-medium: rgb(255 255 255 / 0.6);
+  --glass-bg-strong: rgb(255 255 255 / 0.9);
+  --glass-border: rgb(255 255 255 / 0.2);
+  --glass-shadow: rgb(0 0 0 / 0.1);
+  
+  /* Accent colors */
+  --accent-coral: #ff6b6b;
+  --accent-blue: #4ecdc4;
+  --accent-amber: #ffd93d;
+  --accent-sage: #a8e6cf;
+}
+
+@theme {
+  /* Color System */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-white: var(--white);
+  
+  /* Glassmorphism Colors */
+  --color-glass-light: var(--glass-bg);
+  --color-glass-medium: var(--glass-bg-medium);
+  --color-glass-strong: var(--glass-bg-strong);
+  --color-glass-border: var(--glass-border);
+  
+  /* Accent Colors */
+  --color-accent-coral: var(--accent-coral);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-sage: var(--accent-sage);
+  
+  /* Typography */
+  --font-sans: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  --font-mono: 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  
+  /* Glassmorphism Backdrop Blur */
+  --backdrop-blur-sm: blur(12px);
+  --backdrop-blur-md: blur(20px);
+  --backdrop-blur-lg: blur(25px);
+  
+  /* Custom Shadows */
+  --shadow-glass: 0 8px 32px var(--glass-shadow);
+  --shadow-glass-lg: 0 12px 40px var(--glass-shadow);
+  
+  /* Border Radius Scale */
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+  
+  /* Spacing Scale (enhanced for glassmorphism) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark theme adaptations */
+    --background: #1a1625;
+    --surface: #2d2436;
+    --surface-alt: #3a2f47;
+    --foreground: #ffffff;
+    --foreground-secondary: #b3b3b3;
+    
+    /* Adjusted glassmorphism for dark mode */
+    --glass-bg: rgb(255 255 255 / 0.05);
+    --glass-bg-medium: rgb(255 255 255 / 0.1);
+    --glass-bg-strong: rgb(255 255 255 / 0.2);
+    --glass-border: rgb(255 255 255 / 0.1);
+    --glass-shadow: rgb(0 0 0 / 0.3);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Base glassmorphism utility classes */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur-md);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-medium {
+  background: var(--glass-bg-medium);
+  backdrop-filter: var(--backdrop-blur-md);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--backdrop-blur-sm);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass-lg);
+}
