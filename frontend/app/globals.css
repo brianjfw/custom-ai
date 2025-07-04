@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+/* Glassmorphism Theme: AI-Powered Operating System for SMBs */
+:root {
+  /* Brand Colors - Soft lavender and warm cream palette */
+  --color-brand-primary: #f4f3ff;
+  --color-brand-secondary: #ffffff;
+  --color-brand-background: #faf9f7;
+  --color-brand-surface: #f8f9fa;
+  
+  /* Accent Colors - Professional warmth */
+  --color-accent-coral: #ff6b6b;
+  --color-accent-blue: #4ecdc4;
+  --color-accent-amber: #ffd93d;
+  --color-accent-sage: #a8e6cf;
+  
+  /* Text Colors - Optimal contrast */
+  --color-text-primary: #2c2c2c;
+  --color-text-secondary: #6c757d;
+  --color-text-inverse: #ffffff;
+  
+  /* Dark Theme Colors */
+  --color-dark-primary: #1a1625;
+  --color-dark-secondary: #2d3436;
+  --color-dark-surface: #393e46;
+  
+  /* Glass Effects */
+  --glass-light: rgba(255, 255, 255, 0.1);
+  --glass-medium: rgba(255, 255, 255, 0.6);
+  --glass-strong: rgba(255, 255, 255, 0.9);
+  --glass-dark: rgba(0, 0, 0, 0.1);
+  
+  /* Backdrop Blur Values */
+  --blur-sm: 15px;
+  --blur-md: 20px;
+  --blur-lg: 25px;
+  
+  /* Shadows */
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --shadow-glass-strong: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  
+  /* Border Radius */
+  --radius-card: 24px;
+  --radius-large: 32px;
+  --radius-pill: 9999px;
+  
+  /* Spacing Scale */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+}
+
+/* Tailwind v4 Inline Theme Configuration */
+@theme inline {
+  /* Color Palette */
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-secondary: var(--color-brand-secondary);
+  --color-brand-background: var(--color-brand-background);
+  --color-brand-surface: var(--color-brand-surface);
+  --color-accent-coral: var(--color-accent-coral);
+  --color-accent-blue: var(--color-accent-blue);
+  --color-accent-amber: var(--color-accent-amber);
+  --color-accent-sage: var(--color-accent-sage);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-inverse: var(--color-text-inverse);
+  
+  /* Background Colors */
+  --color-background: var(--color-brand-background);
+  --color-foreground: var(--color-text-primary);
+  
+  /* Glass Surface Colors */
+  --color-glass-light: var(--glass-light);
+  --color-glass-medium: var(--glass-medium);
+  --color-glass-strong: var(--glass-strong);
+  
+  /* Typography */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'Cascadia Code';
+  
+  /* Spacing */
+  --spacing-xs: var(--spacing-xs);
+  --spacing-sm: var(--spacing-sm);
+  --spacing-md: var(--spacing-md);
+  --spacing-lg: var(--spacing-lg);
+  --spacing-xl: var(--spacing-xl);
+  --spacing-2xl: var(--spacing-2xl);
+  
+  /* Border Radius */
+  --radius-sm: 16px;
+  --radius-md: var(--radius-card);
+  --radius-lg: var(--radius-large);
+  --radius-full: var(--radius-pill);
+  
+  /* Shadows */
+  --shadow-glass: var(--shadow-glass);
+  --shadow-glass-strong: var(--shadow-glass-strong);
+  
+  /* Backdrop Blur */
+  --blur-sm: var(--blur-sm);
+  --blur-md: var(--blur-md);
+  --blur-lg: var(--blur-lg);
+}
+
+/* Dark Theme Override */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-brand-primary: var(--color-dark-primary);
+    --color-brand-secondary: var(--color-dark-secondary);
+    --color-brand-background: var(--color-dark-primary);
+    --color-brand-surface: var(--color-dark-surface);
+    --color-text-primary: var(--color-text-inverse);
+    --color-text-secondary: #a8adb7;
+    --glass-light: rgba(255, 255, 255, 0.05);
+    --glass-medium: rgba(255, 255, 255, 0.1);
+    --glass-strong: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* High Contrast Theme Support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-text-primary: #000000;
+    --color-brand-primary: #ffffff;
+    --glass-light: rgba(0, 0, 0, 0.9);
+    --glass-medium: rgba(0, 0, 0, 0.95);
+    --glass-strong: rgba(0, 0, 0, 0.98);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-brand-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  font-feature-settings: "cv11", "ss01";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism Utility Classes */
+.glass-light {
+  background: var(--glass-light);
+  backdrop-filter: blur(var(--blur-sm));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-medium {
+  background: var(--glass-medium);
+  backdrop-filter: blur(var(--blur-md));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-strong {
+  background: var(--glass-strong);
+  backdrop-filter: blur(var(--blur-lg));
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-glass-strong);
+}
+
+.glass-card {
+  background: var(--glass-medium);
+  backdrop-filter: blur(var(--blur-md));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-glass);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: var(--glass-strong);
+  box-shadow: var(--shadow-glass-strong);
+  transform: translateY(-2px);
+}
+
+/* Professional Gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%);
+}
+
+.gradient-surface {
+  background: linear-gradient(135deg, var(--color-brand-surface) 0%, var(--color-brand-background) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent-coral) 0%, var(--color-accent-blue) 100%);
+}
+
+/* Focus Styles for Accessibility */
+:focus {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Selection Styles */
+::selection {
+  background: var(--color-accent-coral);
+  color: var(--color-text-inverse);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brand-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-blue);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-coral);
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glassMorph {
+  0% {
+    background: var(--glass-light);
+    backdrop-filter: blur(var(--blur-sm));
+  }
+  50% {
+    background: var(--glass-medium);
+    backdrop-filter: blur(var(--blur-md));
+  }
+  100% {
+    background: var(--glass-strong);
+    backdrop-filter: blur(var(--blur-lg));
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-glass-morph {
+  animation: glassMorph 2s ease-in-out infinite alternate;
+}
