@@ -1,0 +1,457 @@
+# Project Tasks Management for Cursor AI Agents
+# This YAML structure is optimized for Cursor's background agents to understand project context
+# and provide intelligent assistance during development
+
+project:
+  name: "Modern AI-Powered SMB Platform"
+  description: "Building a high-impact SMB platform with cutting-edge 2024-2025 technologies"
+  tech_stack:
+    - "Next.js 14+ with App Router"
+    - "HeroUI (formerly NextUI)"
+    - "Tailwind CSS + Glassmorphism"
+    - "tRPC for type safety"
+    - "Drizzle ORM + PostgreSQL/Neon"
+    - "Clerk Authentication"
+    - "Mirascope + Langflow for AI"
+    - "Vercel Deployment"
+  
+  # Context for Cursor's @Codebase and AI agents
+  cursor_context:
+    main_directories:
+      - "src/app"          # Next.js App Router
+      - "src/components"   # React components
+      - "src/lib"          # Utility functions
+      - "src/styles"       # Tailwind CSS and glassmorphism
+      - "src/server"       # tRPC server logic
+      - "src/db"           # Drizzle ORM schemas
+      - "src/ai"           # AI integration logic
+    
+    key_files:
+      - "package.json"
+      - "tailwind.config.js"
+      - "drizzle.config.ts"
+      - "next.config.js"
+      - "tsconfig.json"
+      - ".env.local"
+
+# Task Categories for Development Phases
+task_categories:
+  foundation:
+    name: "Foundation Setup"
+    description: "Core project setup and configuration"
+    color: "#ff6b6b"
+    
+  frontend:
+    name: "Frontend Development"
+    description: "UI/UX implementation with HeroUI and glassmorphism"
+    color: "#4ecdc4"
+    
+  backend:
+    name: "Backend Development"
+    description: "API development with tRPC and database setup"
+    color: "#ffd93d"
+    
+  ai_integration:
+    name: "AI Integration"
+    description: "Mirascope and Langflow implementation"
+    color: "#a8e6cf"
+    
+  deployment:
+    name: "Deployment & DevOps"
+    description: "Vercel deployment and CI/CD setup"
+    color: "#ff9f43"
+    
+  testing:
+    name: "Testing & Quality"
+    description: "Testing, code quality, and documentation"
+    color: "#6c5ce7"
+
+# Priority Levels
+priority_levels:
+  critical: 1    # Blocking other tasks
+  high: 2        # Important for milestone
+  medium: 3      # Standard priority
+  low: 4         # Nice to have
+  backlog: 5     # Future consideration
+
+# Status Types
+status_types:
+  not_started: "not_started"
+  in_progress: "in_progress"
+  blocked: "blocked"
+  review: "review"
+  testing: "testing"
+  completed: "completed"
+  cancelled: "cancelled"
+
+# Development Tasks
+tasks:
+  # Phase 1: Foundation (Weeks 1-2)
+  - id: "FOUND-001"
+    name: "Initialize Next.js Project with TypeScript"
+    description: |
+      Create new Next.js 14+ project with App Router and TypeScript configuration.
+      Set up proper folder structure for modern React development.
+    category: "foundation"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 2
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-15"
+    due_date: "2024-01-16"
+    
+    # Context for Cursor AI agents
+    cursor_hints:
+      - "Use 'npx create-next-app@latest' with TypeScript and App Router"
+      - "Configure tsconfig.json for strict type checking"
+      - "Set up proper import aliases (@/ for src/)"
+    
+    files_to_create:
+      - "package.json"
+      - "tsconfig.json"
+      - "next.config.js"
+      - "src/app/layout.tsx"
+      - "src/app/page.tsx"
+    
+    terminal_commands:
+      - "npx create-next-app@latest . --typescript --tailwind --app --import-alias '@/*'"
+      - "npm install"
+      - "npm run dev"
+    
+    dependencies: []
+    blocks: []
+    
+    acceptance_criteria:
+      - "Project runs without errors on npm run dev"
+      - "TypeScript compilation succeeds"
+      - "App Router is properly configured"
+      - "Import aliases work correctly"
+
+  - id: "FOUND-002"
+    name: "Configure Tailwind CSS with Glassmorphism Theme"
+    description: |
+      Set up Tailwind CSS with custom glassmorphism theme matching our design system.
+      Configure colors, gradients, and backdrop blur effects.
+    category: "foundation"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 3
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-15"
+    due_date: "2024-01-17"
+    
+    cursor_hints:
+      - "Extend Tailwind theme with glassmorphism colors and effects"
+      - "Configure backdrop-blur and transparency utilities"
+      - "Add custom gradient definitions"
+    
+    files_to_modify:
+      - "tailwind.config.js"
+      - "src/app/globals.css"
+    
+    files_to_create:
+      - "src/styles/glassmorphism.css"
+    
+    dependencies: ["FOUND-001"]
+    blocks: []
+    
+    design_tokens:
+      colors:
+        primary: "#f4f3ff"
+        secondary: "#ffffff"
+        background: "#faf9f7"
+        surface: "#f8f9fa"
+        accent_coral: "#ff6b6b"
+        accent_blue: "#4ecdc4"
+        accent_amber: "#ffd93d"
+        accent_green: "#a8e6cf"
+      
+      glassmorphism:
+        blur: "backdrop-blur-md"
+        transparency: "bg-opacity-20"
+        border: "border border-white/20"
+        shadow: "shadow-lg shadow-black/10"
+
+  - id: "FOUND-003"
+    name: "Install and Configure HeroUI Component Library"
+    description: |
+      Install HeroUI (formerly NextUI) and configure it for glassmorphism design.
+      Set up theme provider and basic component structure.
+    category: "frontend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 2
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-15"
+    due_date: "2024-01-17"
+    
+    cursor_hints:
+      - "Install @heroui/react and @heroui/theme"
+      - "Configure HeroUIProvider in app/layout.tsx"
+      - "Set up custom theme for glassmorphism"
+    
+    terminal_commands:
+      - "npm install @heroui/react @heroui/theme framer-motion"
+      - "npm install @heroui/system @heroui/styled-system"
+    
+    files_to_modify:
+      - "src/app/layout.tsx"
+      - "tailwind.config.js"
+    
+    files_to_create:
+      - "src/lib/heroui-theme.ts"
+      - "src/components/providers/HeroUIProvider.tsx"
+    
+    dependencies: ["FOUND-001", "FOUND-002"]
+    blocks: []
+
+  - id: "FOUND-004"
+    name: "Set up Drizzle ORM with PostgreSQL Schema"
+    description: |
+      Configure Drizzle ORM with PostgreSQL database connection.
+      Create initial schema for users, conversations, and files.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 4
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-16"
+    due_date: "2024-01-18"
+    
+    cursor_hints:
+      - "Install drizzle-orm and postgresql driver"
+      - "Create database schema files in src/db/"
+      - "Set up migrations with drizzle-kit"
+    
+    terminal_commands:
+      - "npm install drizzle-orm @neondatabase/serverless"
+      - "npm install -D drizzle-kit"
+      - "npx drizzle-kit generate"
+      - "npx drizzle-kit migrate"
+    
+    files_to_create:
+      - "src/db/schema.ts"
+      - "src/db/index.ts"
+      - "drizzle.config.ts"
+      - "src/db/migrations/"
+    
+    environment_variables:
+      - "DATABASE_URL"
+      - "POSTGRES_DB"
+      - "POSTGRES_USER"
+      - "POSTGRES_PASSWORD"
+    
+    dependencies: ["FOUND-001"]
+    blocks: []
+
+  - id: "FOUND-005"
+    name: "Integrate Clerk Authentication"
+    description: |
+      Set up Clerk for enterprise-grade authentication with SOC2 compliance.
+      Configure middleware and protected routes.
+    category: "foundation"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 3
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-17"
+    due_date: "2024-01-19"
+    
+    cursor_hints:
+      - "Install @clerk/nextjs and configure ClerkProvider"
+      - "Set up middleware for route protection"
+      - "Create sign-in and sign-up pages"
+    
+    terminal_commands:
+      - "npm install @clerk/nextjs"
+    
+    files_to_create:
+      - "src/middleware.ts"
+      - "src/app/sign-in/[[...sign-in]]/page.tsx"
+      - "src/app/sign-up/[[...sign-up]]/page.tsx"
+    
+    files_to_modify:
+      - "src/app/layout.tsx"
+      - ".env.local"
+    
+    environment_variables:
+      - "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+      - "CLERK_SECRET_KEY"
+      - "NEXT_PUBLIC_CLERK_SIGN_IN_URL"
+      - "NEXT_PUBLIC_CLERK_SIGN_UP_URL"
+    
+    dependencies: ["FOUND-001"]
+    blocks: []
+
+  # Phase 2: Core Features (Weeks 3-4)
+  - id: "CORE-001"
+    name: "Set up tRPC for Type-Safe APIs"
+    description: |
+      Configure tRPC for end-to-end type safety between frontend and backend.
+      Set up API routes and client configuration.
+    category: "backend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 4
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-22"
+    due_date: "2024-01-24"
+    
+    cursor_hints:
+      - "Install @trpc/server @trpc/client @trpc/react-query"
+      - "Create tRPC router and procedures"
+      - "Set up React Query integration"
+    
+    terminal_commands:
+      - "npm install @trpc/server @trpc/client @trpc/react-query"
+      - "npm install @tanstack/react-query"
+    
+    files_to_create:
+      - "src/server/trpc.ts"
+      - "src/server/routers/_app.ts"
+      - "src/server/routers/user.ts"
+      - "src/lib/trpc.ts"
+      - "src/app/api/trpc/[trpc]/route.ts"
+    
+    files_to_modify:
+      - "src/app/layout.tsx"
+    
+    dependencies: ["FOUND-001", "FOUND-004"]
+    blocks: []
+
+  - id: "CORE-002"
+    name: "Implement Dual-Pane Interface Layout"
+    description: |
+      Create responsive dual-pane interface with glassmorphism design.
+      Left navigation panel with time-based grouping, right content workspace.
+    category: "frontend"
+    priority: 1
+    status: "not_started"
+    estimated_hours: 6
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-24"
+    due_date: "2024-01-26"
+    
+    cursor_hints:
+      - "Use CSS Grid for dual-pane layout"
+      - "Implement responsive design with breakpoints"
+      - "Add glassmorphism effects to panels"
+    
+    files_to_create:
+      - "src/components/layout/DualPaneLayout.tsx"
+      - "src/components/layout/NavigationPanel.tsx"
+      - "src/components/layout/ContentWorkspace.tsx"
+      - "src/components/ui/GlassmorphismCard.tsx"
+    
+    dependencies: ["FOUND-002", "FOUND-003"]
+    blocks: []
+
+  - id: "CORE-003"
+    name: "AI Integration with Mirascope Setup"
+    description: |
+      Set up Mirascope for AI agent development and basic conversation flow.
+      Integrate with the dual-pane interface for AI interactions.
+    category: "ai_integration"
+    priority: 2
+    status: "not_started"
+    estimated_hours: 5
+    actual_hours: 0
+    assigned_to: "dev_team"
+    created_date: "2024-01-26"
+    due_date: "2024-01-29"
+    
+    cursor_hints:
+      - "Install mirascope and configure AI providers"
+      - "Create conversation management system"
+      - "Integrate with tRPC for type-safe AI endpoints"
+    
+    terminal_commands:
+      - "npm install mirascope"
+      - "pip install mirascope"  # If using Python backend
+    
+    files_to_create:
+      - "src/ai/mirascope-config.ts"
+      - "src/ai/conversation-manager.ts"
+      - "src/server/routers/ai.ts"
+      - "src/components/ai/ConversationInterface.tsx"
+    
+    environment_variables:
+      - "OPENAI_API_KEY"
+      - "ANTHROPIC_API_KEY"
+    
+    dependencies: ["CORE-001", "CORE-002"]
+    blocks: []
+
+# Template for new tasks (for Cursor AI agents to use)
+task_template:
+  id: "CAT-###"  # Category prefix + sequential number
+  name: "Task Name"
+  description: |
+    Detailed description of what needs to be done.
+    Include context and requirements.
+  category: "foundation|frontend|backend|ai_integration|deployment|testing"
+  priority: 1-5  # 1=critical, 5=backlog
+  status: "not_started"
+  estimated_hours: 0
+  actual_hours: 0
+  assigned_to: "dev_team"
+  created_date: "YYYY-MM-DD"
+  due_date: "YYYY-MM-DD"
+  
+  # Help Cursor AI understand the task
+  cursor_hints:
+    - "Specific guidance for AI agents"
+    - "Code patterns or approaches to use"
+  
+  # Files that will be created or modified
+  files_to_create: []
+  files_to_modify: []
+  
+  # Commands to run
+  terminal_commands: []
+  
+  # Environment variables needed
+  environment_variables: []
+  
+  # Task dependencies
+  dependencies: []  # Task IDs this depends on
+  blocks: []        # Task IDs this blocks
+  
+  # Success criteria
+  acceptance_criteria:
+    - "Criteria 1"
+    - "Criteria 2"
+
+# Cursor AI Agent Instructions
+cursor_instructions:
+  context_usage:
+    - "Use @Codebase to understand existing code structure"
+    - "Reference @Files when working with specific files"
+    - "Use @Docs to reference HeroUI, tRPC, and Drizzle documentation"
+    - "Use @Web for latest best practices and troubleshooting"
+  
+  code_style:
+    - "Follow TypeScript strict mode"
+    - "Use modern React patterns (hooks, functional components)"
+    - "Implement proper error handling and loading states"
+    - "Follow the glassmorphism design system"
+    - "Maintain consistent naming conventions"
+  
+  testing_approach:
+    - "Write unit tests for utility functions"
+    - "Create integration tests for API endpoints"
+    - "Test responsive design across breakpoints"
+    - "Validate accessibility standards"
+  
+  performance_considerations:
+    - "Implement lazy loading for components"
+    - "Optimize bundle size with code splitting"
+    - "Use React.memo for expensive components"
+    - "Implement proper caching strategies"
