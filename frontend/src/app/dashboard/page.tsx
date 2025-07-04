@@ -2,6 +2,7 @@ import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { UserProfile } from "@/components/ui/UserProfile";
+import { DualPaneLayout } from "@/components/layout/DualPaneLayout";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -11,52 +12,35 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-surface to-surface-alt">
-      {/* Header */}
-      <header className="glass-nav p-6 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-glass">
-              Business Dashboard
-            </h1>
-            <p className="text-glass-secondary">
-              Welcome to your AI-powered business platform
-            </p>
-          </div>
-          <div className="flex items-center gap-4">
-            <UserButton 
-              appearance={{
-                elements: {
-                  userButtonBox: "glass-card p-2",
-                  userButtonTrigger: "glass-avatar",
-                  userButtonPopoverCard: "glass-card border border-white/20 shadow-lg shadow-black/10",
-                  userButtonPopoverActionButton: "glass-button-secondary text-glass hover:bg-white/20",
-                  userButtonPopoverActionButtonText: "text-glass",
-                  userButtonPopoverFooter: "border-t border-white/10",
-                }
-              }}
-            />
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto p-6">
-        {/* User Profile Section with tRPC Demo */}
-        <UserProfile />
-
+    <DualPaneLayout>
+      <div className="p-6">
         {/* Welcome Section */}
         <div className="glass-section mb-8">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 rounded-full bg-gradient-to-r from-accent-coral to-accent-blue flex items-center justify-center">
               <span className="text-2xl">🚀</span>
             </div>
-            <div>
+            <div className="flex-1">
               <h2 className="text-2xl font-bold text-glass">
                 Welcome to Your SMB Platform
               </h2>
               <p className="text-glass-secondary">
                 Your AI-powered business operations center is ready
               </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <UserButton 
+                appearance={{
+                  elements: {
+                    userButtonBox: "glass-card p-2",
+                    userButtonTrigger: "glass-avatar",
+                    userButtonPopoverCard: "glass-card border border-white/20 shadow-lg shadow-black/10",
+                    userButtonPopoverActionButton: "glass-button-secondary text-glass hover:bg-white/20",
+                    userButtonPopoverActionButtonText: "text-glass",
+                    userButtonPopoverFooter: "border-t border-white/10",
+                  }
+                }}
+              />
             </div>
           </div>
           
@@ -99,6 +83,9 @@ export default async function DashboardPage() {
           </div>
         </div>
 
+        {/* User Profile Section with tRPC Demo */}
+        <UserProfile />
+
         {/* Quick Actions */}
         <div className="glass-container">
           <h2 className="text-xl font-bold text-glass mb-4">
@@ -134,7 +121,7 @@ export default async function DashboardPage() {
             </button>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </DualPaneLayout>
   );
 }
