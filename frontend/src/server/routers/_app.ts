@@ -1,5 +1,6 @@
 import { createTRPCRouter } from '../trpc';
 import { userRouter } from './user';
+import { aiRouter } from './ai';
 
 /**
  * Main application router
@@ -7,10 +8,10 @@ import { userRouter } from './user';
  */
 export const appRouter = createTRPCRouter({
   user: userRouter,
+  ai: aiRouter,
   // Future routers will be added here:
   // conversation: conversationRouter,
   // file: fileRouter,
-  // ai: aiRouter,
   // business: businessRouter,
   // analytics: analyticsRouter,
   // integration: integrationRouter,
