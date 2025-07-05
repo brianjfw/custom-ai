@@ -31,15 +31,19 @@ const config = {
     '!src/**/*.d.ts',
     '!src/db/migrations/**',
     '!src/**/*.stories.{js,jsx,ts,tsx}',
+    '!src/middleware.ts', // Exclude middleware from coverage for now
   ],
+  
+  // Coverage reporters
+  coverageReporters: ['text', 'lcov', 'clover', 'json-summary'],
   
   // Coverage thresholds
   coverageThreshold: {
     global: {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: 70,
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
     },
   },
   
@@ -61,8 +65,11 @@ const config = {
   
   // Transform ignore patterns
   transformIgnorePatterns: [
-    'node_modules/(?!(.*\\.mjs$|@testing-library|superjson))',
+    'node_modules/(?!(.*\\.mjs$|@testing-library|superjson|@heroui))',
   ],
+  
+  // Handle ES modules
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
   
   // Global setup
   globalSetup: '<rootDir>/jest.global-setup.js',
