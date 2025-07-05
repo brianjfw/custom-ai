@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
 import { UserButton } from '@clerk/nextjs';
+import AISuggestionsPanel from '@/components/ai/AISuggestionsPanel';
 
 interface NavigationPanelProps {
   width: number;
@@ -210,6 +211,19 @@ export function NavigationPanel({
           </div>
         ))}
       </div>
+
+      {/* AI Suggestions Panel */}
+      {!isCollapsed && (
+        <div className="px-2 pb-4">
+          <AISuggestionsPanel 
+            className="h-64"
+            onSuggestionClick={(suggestion) => {
+              // TODO: Pass suggestion to chat interface via context or callback
+              console.log('Suggestion clicked:', suggestion);
+            }}
+          />
+        </div>
+      )}
 
       {/* Footer */}
       <div className="p-4 border-t border-white/10">
