@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid, jsonb, boolean, integer, varchar, decimal } from 'drizzle-orm/pg-core'
+import { pgTable, text, timestamp, uuid, jsonb, boolean, integer, varchar, decimal, index } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
 
 // Users table - core user information
@@ -16,7 +16,10 @@ export const users = pgTable('users', {
   subscriptionTier: varchar('subscription_tier', { length: 50 }).default('free'),
   createdAt: timestamp('created_at').default(sql`now()`),
   updatedAt: timestamp('updated_at').default(sql`now()`),
-})
+}, (table) => ({
+  clerkIdIdx: index('users_clerk_id_idx').on(table.clerkId),
+  emailIdx: index('users_email_idx').on(table.email),
+}))
 
 // Conversations table - AI chat conversations
 export const conversations = pgTable('conversations', {
@@ -78,7 +81,10 @@ export const businessProfiles = pgTable('business_profiles', {
   settings: jsonb('settings'), // Business-specific settings
   createdAt: timestamp('created_at').default(sql`now()`),
   updatedAt: timestamp('updated_at').default(sql`now()`),
-})
+}, (table) => ({
+  userIdIdx: index('business_profiles_user_id_idx').on(table.userId),
+  industryIdx: index('business_profiles_industry_idx').on(table.industry),
+}))
 
 // AI agents table - configuration for AI assistants
 export const aiAgents = pgTable('ai_agents', {
@@ -158,3 +164,10 @@ export type Analytics = typeof analytics.$inferSelect
 export type NewAnalytics = typeof analytics.$inferInsert
 export type Integration = typeof integrations.$inferSelect
 export type NewIntegration = typeof integrations.$inferInsert
+
+// Export domain-specific schemas
+export * from './schema/customers'
+export * from './schema/communications'
+export * from './schema/calendar'
+export * from './schema/financial'
+export * from './schema/ai-conversations'
