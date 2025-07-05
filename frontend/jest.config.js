@@ -61,7 +61,7 @@ const config = {
   
   // Transform ignore patterns
   transformIgnorePatterns: [
-    'node_modules/(?!(.*\\.mjs$|@testing-library))',
+    'node_modules/(?!(.*\\.mjs$|@testing-library|superjson))',
   ],
   
   // Global setup
