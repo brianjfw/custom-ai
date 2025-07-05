@@ -156,14 +156,17 @@ const contextRequestSchema = z.object({
  * orchestrate complex workflows automatically.
  */
 export class ContextEngine {
-  private openai: OpenAI;
+  private openai: OpenAI | null = null;
   private businessContextCache: Map<string, { data: BusinessContext; timestamp: number }> = new Map();
   private contextTTL = 5 * 60 * 1000; // 5 minutes cache
 
   constructor() {
-    this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY || '',
-    });
+    // Only initialize OpenAI in non-test environments
+    if (process.env.NODE_ENV !== 'test') {
+      this.openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY || '',
+      });
+    }
   }
 
   /**
@@ -623,14 +626,14 @@ Classify the intent and identify key components:
 Respond with a JSON object containing these classifications.`;
 
     try {
-      const response = await this.openai.chat.completions.create({
+      const response = await this.openai?.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 500,
         temperature: 0.1,
       });
 
-      const content = response.choices[0]?.message?.content || '{}';
+      const content = response?.choices[0]?.message?.content || '{}';
       return JSON.parse(content);
     } catch (error) {
       console.error('Error analyzing query intent:', error);
@@ -688,7 +691,7 @@ Please provide a comprehensive response that:
 4. Suggests next steps or follow-up actions`;
 
     try {
-      const response = await this.openai.chat.completions.create({
+      const response = await this.openai?.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           { role: 'system', content: systemPrompt },
@@ -698,7 +701,7 @@ Please provide a comprehensive response that:
         temperature: 0.7,
       });
 
-      return response.choices[0]?.message?.content || 'I apologize, but I could not generate a response. Please try again.';
+      return response?.choices[0]?.message?.content || 'I apologize, but I could not generate a response. Please try again.';
     } catch (error) {
       console.error('Error generating contextual response:', error);
       return 'I apologize, but I encountered an error processing your request. Please try again.';
