@@ -17,6 +17,8 @@ const config = {
   // Module name mapping for path aliases
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    // Mock problematic ES modules
+    '^superjson$': '<rootDir>/node_modules/superjson/dist/index.js',
   },
   
   // Test file patterns
@@ -49,8 +51,12 @@ const config = {
   
   // Transform configuration
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['ts-jest', {
-      tsconfig: 'tsconfig.json',
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', {
+      presets: [
+        ['next/babel'],
+        ['@babel/preset-env', { targets: { node: 'current' } }],
+        '@babel/preset-typescript'
+      ],
     }],
   },
   
@@ -63,19 +69,34 @@ const config = {
     '<rootDir>/node_modules/',
   ],
   
-  // Transform ignore patterns
+  // Transform ignore patterns - Allow transforming of ES modules
   transformIgnorePatterns: [
-    'node_modules/(?!(.*\\.mjs$|@testing-library|superjson|@heroui))',
+    'node_modules/(?!(superjson|@testing-library|@heroui|@trpc|@tanstack|@clerk))',
   ],
   
-  // Handle ES modules
+  // Handle ES modules - Enable ESM support
+  preset: 'ts-jest/presets/default-esm',
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  globals: {
+    'ts-jest': {
+      useESM: true,
+    },
+  },
   
   // Global setup
   globalSetup: '<rootDir>/jest.global-setup.js',
   
   // Test timeout
   testTimeout: 10000,
+  
+  // Verbose output for debugging
+  verbose: false,
+  
+  // Clear mocks between tests
+  clearMocks: true,
+  
+  // Restore mocks after each test
+  restoreMocks: true,
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
