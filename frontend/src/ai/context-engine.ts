@@ -428,9 +428,17 @@ export class ContextEngine {
       ? Math.floor((Date.now() - lastContact.getTime()) / (1000 * 60 * 60 * 24))
       : 999;
 
-    if (value >= 10000) return 'vip';
+    // Handle null/undefined values - should be considered new customers
+    if (!totalValue && !lastContact) return 'new';
+    
+    // Check for at-risk customers first (any customer with >90 days absence is at risk)
     if (daysSinceContact > 90) return 'at_risk';
+    
+    // Then classify by value for active customers
+    if (value >= 10000) return 'vip';
     if (value >= 1000) return 'regular';
+    
+    // Default to new for low-value, recent customers
     return 'new';
   }
 
