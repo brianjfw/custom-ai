@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { DualPaneLayout } from "@/components/layout/DualPaneLayout";
 import ChatInterface from "@/components/ai/ChatInterface";
+import { FinancialDashboard } from "@/components/financial/FinancialDashboard";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -17,22 +18,22 @@ export default async function DashboardPage() {
         <div className="glass-section mb-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-gradient-to-r from-accent-coral to-accent-blue flex items-center justify-center">
-              <span className="text-xl">🤖</span>
+              <span className="text-xl">📊</span>
             </div>
             <div>
               <h1 className="text-xl font-bold text-glass">
-                AI Business Assistant
+                Business Dashboard
               </h1>
               <p className="text-glass-secondary text-sm">
-                Your intelligent partner for business growth and optimization
+                Comprehensive business intelligence and financial analytics
               </p>
             </div>
           </div>
         </div>
         
-        {/* Chat Interface */}
-        <div className="flex-1">
-          <ChatInterface />
+        {/* Financial Dashboard */}
+        <div className="flex-1 overflow-auto">
+          <FinancialDashboard />
         </div>
       </div>
     </DualPaneLayout>
