@@ -72,14 +72,24 @@ jest.mock('@/server/trpc', () => ({
     query: jest.fn().mockReturnThis(),
     mutation: jest.fn().mockReturnThis(),
   },
+  protectedProcedure: {
+    input: jest.fn().mockReturnThis(),
+    query: jest.fn().mockReturnThis(),
+    mutation: jest.fn().mockReturnThis(),
+  },
 }));
 
 // Mock Zod
 jest.mock('zod', () => ({
   z: {
     object: jest.fn().mockReturnThis(),
-    string: jest.fn().mockReturnThis(),
-    email: jest.fn().mockReturnThis(),
+    string: jest.fn(() => ({
+      email: jest.fn().mockReturnThis(),
+      url: jest.fn().mockReturnThis(),
+      min: jest.fn().mockReturnThis(),
+      max: jest.fn().mockReturnThis(),
+      optional: jest.fn().mockReturnThis(),
+    })),
     optional: jest.fn().mockReturnThis(),
     min: jest.fn().mockReturnThis(),
     max: jest.fn().mockReturnThis(),
@@ -328,16 +338,16 @@ describe('User Router', () => {
       };
 
       const userIds = ['user-1', 'user-2', 'user-3', 'user-4', 'user-5'];
-      const startTime = Date.now();
       
       const results = await Promise.all(
         userIds.map(id => getUserConcurrentMock(id))
       );
       
-      const endTime = Date.now();
-      
       expect(results).toHaveLength(5);
-      expect(endTime - startTime).toBeLessThan(1000); // Should complete quickly
+      expect(results[0]).toEqual([{
+        id: 'user-123',
+        name: 'Test User'
+      }]);
       expect(mockDb.select).toHaveBeenCalledTimes(5);
     });
 
