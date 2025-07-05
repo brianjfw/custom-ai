@@ -1,6 +1,12 @@
 import { createTRPCRouter } from '../trpc';
 import { userRouter } from './user';
 import { aiRouter } from './ai';
+import { customersRouter } from './customers';
+import { jobsRouter } from './jobs';
+import { communicationsRouter } from './communications';
+import { calendarRouter } from './calendar';
+import { financialRouter } from './financial';
+import { analyticsRouter } from './analytics';
 
 /**
  * Main application router
@@ -9,12 +15,12 @@ import { aiRouter } from './ai';
 export const appRouter = createTRPCRouter({
   user: userRouter,
   ai: aiRouter,
-  // Future routers will be added here:
-  // conversation: conversationRouter,
-  // file: fileRouter,
-  // business: businessRouter,
-  // analytics: analyticsRouter,
-  // integration: integrationRouter,
+  customers: customersRouter,
+  jobs: jobsRouter,
+  communications: communicationsRouter,
+  calendar: calendarRouter,
+  financial: financialRouter,
+  analytics: analyticsRouter,
 });
 
 // Export the router type for use in the frontend
