@@ -8,7 +8,6 @@ import { useUser } from '@clerk/nextjs';
 import { NotificationProvider, useNotificationHelpers } from '@/components/ui/NotificationSystem';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-
 // Demo data for the dashboard
 const mockStats = [
   {
@@ -90,14 +89,34 @@ const mockActivity = [
 ];
 
 function DashboardContent() {
-  const { user, isLoaded } = useUser();
+  const [isClient, setIsClient] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const notifications = useNotificationHelpers();
 
+  // Only run on client-side
   useEffect(() => {
+    setIsClient(true);
     const timer = setTimeout(() => setIsVisible(true), 200);
     return () => clearTimeout(timer);
   }, []);
+
+  // Show loading until client-side hydration
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="glass-card p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-glass">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return <DashboardContentWithAuth isVisible={isVisible} notifications={notifications} />;
+}
+
+function DashboardContentWithAuth({ isVisible, notifications }: { isVisible: boolean; notifications: any }) {
+  const { user, isLoaded } = useUser();
 
   // Demo notification on load
   useEffect(() => {
@@ -119,6 +138,18 @@ function DashboardContent() {
       return () => clearTimeout(timer);
     }
   }, [isLoaded, user, isVisible, notifications]);
+
+  // Show loading state until Clerk is loaded
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="glass-card p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-glass">Loading authentication...</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleStatClick = (stat: any) => {
     notifications.info(
@@ -353,6 +384,9 @@ function DashboardContent() {
     </div>
   );
 }
+
+// Prevent static generation for this page due to auth requirements
+export const dynamic = 'force-dynamic';
 
 export default function DashboardPage() {
   return (
