@@ -30,21 +30,36 @@ jest.mock('next/font/google', () => ({
   }),
 }));
 
-// Mock Next.js router
+// Enhanced Next.js router mocking
+const mockPush = jest.fn()
+const mockReplace = jest.fn()
+const mockBack = jest.fn()
+const mockForward = jest.fn()
+const mockPrefetch = jest.fn()
+const mockRefresh = jest.fn()
+
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(() => ({
-    push: jest.fn(),
-    replace: jest.fn(),
-    back: jest.fn(),
-    forward: jest.fn(),
-    prefetch: jest.fn(),
-    refresh: jest.fn(),
+    push: mockPush,
+    replace: mockReplace,
+    back: mockBack,
+    forward: mockForward,
+    prefetch: mockPrefetch,
+    refresh: mockRefresh,
   })),
   usePathname: jest.fn(() => '/'),
   useSearchParams: jest.fn(() => new URLSearchParams()),
 }));
 
-// Mock Clerk
+// Enhanced Clerk mocking with all required methods
+const mockClerkMethods = {
+  navigate: jest.fn(),
+  clerk: {
+    navigate: jest.fn(),
+  },
+  useAwaitableReplace: jest.fn(),
+}
+
 jest.mock('@clerk/nextjs', () => ({
   ClerkProvider: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="clerk-provider">{children}</div>
@@ -59,11 +74,19 @@ jest.mock('@clerk/nextjs', () => ({
     isSignedIn: false,
     user: null,
   }),
+  useClerk: () => mockClerkMethods,
 }));
 
 describe('RootLayout', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // Reset all mock implementations
+    mockPush.mockClear();
+    mockReplace.mockClear();
+    mockBack.mockClear();
+    mockForward.mockClear();
+    mockPrefetch.mockClear();
+    mockRefresh.mockClear();
   });
 
   afterEach(() => {
